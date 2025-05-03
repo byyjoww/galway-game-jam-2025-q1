@@ -12,6 +12,7 @@ namespace Scamazon.Offers
         public Rating Rating { get; set; }
         public DateTime Delivery { get; set; }
         public OfferType Type { get; set; }
+        public float Duration { get; set; }
 
         // Image
         public string ImageHeader1 { get; set; }
