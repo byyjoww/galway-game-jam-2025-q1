@@ -3,7 +3,7 @@
 namespace Scamazon.Offers
 {
     [CreateAssetMenu(fileName = "ProductSO", menuName = "Scriptable Objects/Product")]
-    public class ProductSO : ScriptableObject
+    public class ProductSO : ScriptableObject, IProduct
     {
         [SerializeField] private string productName = default;
         [SerializeField] private string description = default;

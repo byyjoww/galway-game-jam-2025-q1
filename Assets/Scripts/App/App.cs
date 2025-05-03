@@ -24,6 +24,7 @@ namespace Scamazon.App
 
         // Models
         private TimeLimit timeLimit = default;
+        private OfferFactory offerFactory = default;
         private Marketplace marketplace = default;
 
         // View controllers
@@ -34,7 +35,8 @@ namespace Scamazon.App
         private void Start()
         {
             timeLimit = new TimeLimit(timeConfig);
-            marketplace = new Marketplace(startingCurrency);
+            offerFactory = new OfferFactory(products.Elements);
+            marketplace = new Marketplace(offerFactory, startingCurrency);
 
             CreateViewControllers();
 
@@ -55,37 +57,7 @@ namespace Scamazon.App
         [ContextMenu("Create Offer")]
         private void CreateRandomOffer()
         {
-            marketplace.Create(new Offer
-            {
-                ID = Guid.NewGuid().ToString(),
-                Product = new Product
-                {
-                    Name = "Pen",
-                    Description = "This is a pen.",
-                    Icon = null,
-                    Score = 10,
-                },
-                Price = 1.99f,
-                HyperlinkText = "amazin.com",
-                Url = "amazin.com",
-                Rating = new Rating
-                {
-                    NumOfReviews = 20,
-                    Stars = 4,
-                    Reviews = new Review[]
-                    {
-                        new Review
-                        {
-                            Reviewer = "Little Timmy",
-                            Text = "Me Likey",
-                        },
-                    },
-                },
-                Delivery = DateTime.Now.AddDays(7),
-                Type = OfferType.Legit,
-                ImageHeader1 = "Limited Time Offer!",
-                ImageHeader2 = "Great Deal!",
-            });
+            marketplace.Create(offerFactory.CreateOffer());
         }
 
         private void OnDestroy()

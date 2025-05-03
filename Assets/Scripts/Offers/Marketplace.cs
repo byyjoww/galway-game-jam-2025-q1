@@ -5,6 +5,7 @@ namespace Scamazon.Offers
 {
     public class Marketplace
     {
+        private OfferFactory offerFactory = default;
         private float currency = default;
         private Offer[] offers = default;
         private List<Offer> purchases = default;
@@ -15,9 +16,10 @@ namespace Scamazon.Offers
 
         public UnityAction OnValueChanged;
 
-        public Marketplace(float startingCurrency)
+        public Marketplace(OfferFactory offerFactory, float startingCurrency)
         {
-            currency = startingCurrency;
+            this.offerFactory = offerFactory;
+            this.currency = startingCurrency;
             purchases = new List<Offer>();
             skips = new List<Offer>();
             offers = new Offer[]
