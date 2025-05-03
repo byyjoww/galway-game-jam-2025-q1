@@ -21,6 +21,7 @@ namespace Scamazon.App
         [SerializeField] private NotificationView notificationView = default;
         [SerializeField] private TimeLimitView timeLimitView = default;
         [SerializeField] private OffersView offersView = default;
+        [SerializeField] private CurrencyView currencyView = default;
 
         // Models
         private TimeLimit timeLimit = default;
@@ -31,6 +32,7 @@ namespace Scamazon.App
         private NotificationViewController notificationViewController = default;
         private TimeLimitViewController timeLimitViewController = default;
         private OffersViewController offersViewController = default;
+        private CurrencyViewController currencyViewController = default;
 
         private void Start()
         {
@@ -41,6 +43,7 @@ namespace Scamazon.App
             CreateViewControllers();
 
             timeLimit.Start();
+            marketplace.StartShowingOffers();
         }
 
         private void CreateViewControllers()
@@ -48,16 +51,12 @@ namespace Scamazon.App
             notificationViewController = new NotificationViewController(notificationView);
             timeLimitViewController = new TimeLimitViewController(timeLimitView, timeLimit, notificationViewController);
             offersViewController = new OffersViewController(offersView, marketplace);
+            currencyViewController = new CurrencyViewController(currencyView, marketplace);
 
             notificationViewController?.Init();
             timeLimitViewController?.Init();
             offersViewController?.Init();
-        }
-
-        [ContextMenu("Create Offer")]
-        private void CreateRandomOffer()
-        {
-            marketplace.Create(offerFactory.CreateOffer());
+            currencyViewController?.Init();
         }
 
         private void OnDestroy()
@@ -65,8 +64,9 @@ namespace Scamazon.App
             offersViewController?.Dispose();
             timeLimitViewController?.Dispose();
             notificationViewController?.Dispose();
-
+            currencyViewController?.Dispose();
             timeLimit?.Dispose();
+            marketplace?.Dispose();
         }
 
         private void OnValidate()

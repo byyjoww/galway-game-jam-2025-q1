@@ -1,18 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using SLS.Core.Timers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.Events;
 
 namespace Scamazon.Offers
 {
-    public class Marketplace
+    public class Marketplace : IDisposable
     {
+        public class TimedOffer
+        {
+            public Offer Offer;
+            public ITimer Timer;
+        }
+
+        private const float INITIAL_OFFER_CREATION_DELAY = 2f;
+        private const float STANDARD_OFFER_CREATION_DELAY = 5f;
+
         private OfferFactory offerFactory = default;
+        private RandomEventTimer creationTimer = default;
+        private ITimer delay = default;
         private float currency = default;
-        private Offer[] offers = default;
+        private TimedOffer[] offers = default;
         private List<Offer> purchases = default;
         private List<Offer> skips = default;
 
         public float CurrencyAmount => currency;
-        public IReadOnlyList<Offer> Offers => offers;
+        public IReadOnlyList<Offer> Offers => offers.Select(x => x.Offer).ToList();
 
         public UnityAction OnValueChanged;
 
@@ -22,13 +36,32 @@ namespace Scamazon.Offers
             this.currency = startingCurrency;
             purchases = new List<Offer>();
             skips = new List<Offer>();
-            offers = new Offer[]
+            offers = new TimedOffer[]
             {
-                new Offer{ ID = $"{0}", Type = OfferType.None },
-                new Offer{ ID = $"{1}", Type = OfferType.None },
-                new Offer{ ID = $"{2}", Type = OfferType.None },
-                new Offer{ ID = $"{3}", Type = OfferType.None },
+                new TimedOffer{ Offer = new Offer{ ID = $"{0}", Type = OfferType.None } },
+                new TimedOffer{ Offer = new Offer{ ID = $"{1}", Type = OfferType.None } },
+                new TimedOffer{ Offer = new Offer{ ID = $"{2}", Type = OfferType.None } },
+                new TimedOffer{ Offer = new Offer{ ID = $"{3}", Type = OfferType.None } },
             };
+
+            creationTimer = new RandomEventTimer(CreateOffer, new RandomEventTimer.Config 
+            {
+                Interval = STANDARD_OFFER_CREATION_DELAY,
+                Randomness = 0.5f,
+            });
+        }
+
+        public void StartShowingOffers()
+        {
+            delay = Timer.CreateScaledTimer(TimeSpan.FromSeconds(INITIAL_OFFER_CREATION_DELAY));
+            delay.OnEnd.AddListener(delegate
+            {
+                delay?.Dispose();
+                delay = null;
+                CreateOffer();
+                creationTimer.Start();
+            });
+            delay.Start();
         }
 
         public void Purchase(string offerID)
@@ -36,12 +69,14 @@ namespace Scamazon.Offers
             Offer offer = ClearAndReturnOffer(offerID);
             currency -= offer.Price;
             purchases.Add(offer);
+            OnValueChanged?.Invoke();
         }
 
         public void Decline(string offerID)
         {
             Offer offer = ClearAndReturnOffer(offerID);
             skips.Add(offer);
+            OnValueChanged?.Invoke();
         }
 
         private Offer ClearAndReturnOffer(string offerID)
@@ -49,23 +84,48 @@ namespace Scamazon.Offers
             for (int i = 0; i < offers.Length; i++)
             {
                 var off = offers[i];
-                if (off != null && off.ID == offerID)
+                if (off != null && off.Offer.ID == offerID)
                 {
-                    offers[i] = new Offer { ID = $"{i}", Type = OfferType.None };
-                    OnValueChanged?.Invoke();
-                    return off;
+                    offers[i] = new TimedOffer
+                    {
+                        Offer = new Offer
+                        {
+                            ID = $"{i}",
+                            Type = OfferType.None
+                        },
+                    };
+                    return off.Offer;
                 }
             }
 
             return null;
         }
 
-        public void Create(Offer offer)
+        private void CreateOffer()
+        {
+            var offer = offerFactory.CreateOffer();
+            Create(offer);
+        }
+
+        private void Create(Offer offer)
         {
             if (TryGetFirstAvailableIndex(out int index))
             {
-                offers[index] = offer;
+                var timer = Timer.CreateScaledTimer(TimeSpan.FromSeconds(offer.Duration));
+                timer.OnEnd.AddListener(delegate
+                {
+                    timer?.Dispose();
+                    Decline(offer.ID);
+                });
+
+                offers[index] = new TimedOffer 
+                {
+                    Offer = offer,
+                    Timer = timer,
+                };
+
                 OnValueChanged?.Invoke();
+                timer.Start();
             }
         }
 
@@ -73,7 +133,7 @@ namespace Scamazon.Offers
         {
             for (int i = 0; i < offers.Length; i++)
             {
-                if (offers[i].Type == OfferType.None)
+                if (offers[i].Offer.Type == OfferType.None)
                 {
                     index = i;
                     return true;
@@ -82,6 +142,14 @@ namespace Scamazon.Offers
 
             index = -1;
             return false;
+        }
+
+        public void Dispose()
+        {
+            creationTimer?.Stop();
+            creationTimer?.Dispose();
+            delay?.Stop();
+            delay?.Dispose();
         }
     }
 }

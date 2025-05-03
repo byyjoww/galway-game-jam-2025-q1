@@ -96,7 +96,7 @@ namespace Scamazon.Offers
 
         private float GenerateOfferDuration(Product product, OfferType type)
         {
-            return 7f;
+            return 15f;
         }
 
         private (string, string) GenerateHeaders(Product product, OfferType type)
