@@ -1,6 +1,7 @@
 using Scamazon.Offers;
 using Scamazon.Timers;
 using Scamazon.UI;
+using SLS.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,9 @@ namespace Scamazon.App
     {
         [SerializeField] private TimeLimit.Config timeConfig = default;
         [SerializeField] private float startingCurrency = default;
+
+        [Header("Data")]
+        [SerializeField] private Database<ProductSO> products = default;
 
         [Header("Views")]
         [SerializeField] private NotificationView notificationView = default;
@@ -91,6 +95,11 @@ namespace Scamazon.App
             notificationViewController?.Dispose();
 
             timeLimit?.Dispose();
+        }
+
+        private void OnValidate()
+        {
+            products?.Refresh();
         }
     }
 }

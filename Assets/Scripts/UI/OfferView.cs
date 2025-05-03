@@ -13,12 +13,15 @@ namespace Scamazon.UI
         {
             public string OfferID { get; set; }
             public int OfferIndex { get; set; }
+            public bool IsNull { get; set; }
             public string ProductName { get; set; }
             public string ProductDescription { get; set; }
             public string HyperlinkText { get; set; }
             public string DeliveryDate { get; set; }
             public string URL { get; set; }
+            public string Price { get; set; }
             public Sprite ProductIcon { get; set; }
+            public string ImagePrice { get; set; }
             public string ImageHeader1 { get; set; }
             public string ImageHeader2 { get; set; }
             public int Stars { get; set; }
@@ -34,7 +37,9 @@ namespace Scamazon.UI
         [SerializeField] private TMP_Text productDescription = default;
         [SerializeField] private TMP_Text hyperlinkText = default;
         [SerializeField] private TMP_Text url = default;
+        [SerializeField] private TMP_Text price = default;
         [SerializeField] private Image productIcon = default;
+        [SerializeField] private TMP_Text imagePrice = default;
         [SerializeField] private TMP_Text imageHeader1 = default;
         [SerializeField] private TMP_Text imageHeader2 = default;
         [SerializeField] private TMP_Text numOfReviews = default;
@@ -58,12 +63,19 @@ namespace Scamazon.UI
 
         public void Setup(PresenterModel model)
         {
-            panel.gameObject.SetActive(model.OfferID != "");
+            panel.gameObject.SetActive(!model.IsNull);
+            if (!panel.activeSelf)
+            {
+                return;
+            }
+
             productName.text = model.ProductName;
             productDescription.text = model.ProductDescription;
             hyperlinkText.text = model.HyperlinkText;
             url.text = model.URL;
+            price.text = model.Price;
             productIcon.sprite = model.ProductIcon;
+            imagePrice.text = model.ImagePrice;
             imageHeader1.text = model.ImageHeader1;
             imageHeader2.text = model.ImageHeader2;
             SetStars(model.Stars);

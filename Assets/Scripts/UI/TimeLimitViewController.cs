@@ -11,7 +11,7 @@ namespace Scamazon.UI
 
         private Dictionary<double, string> alerts = new Dictionary<double, string>()
         {
-            { 178, "Hello World!" },
+            // { 178, "Hello World!" },
         };
 
         private float progress => (float)(model.ElapsedTime.TotalSeconds / model.TotalTime.TotalSeconds);
@@ -89,7 +89,7 @@ namespace Scamazon.UI
 
         private bool TryGetNextAlertWithinTimeRange(TimeSpan prev, TimeSpan remaining, out KeyValuePair<double, string> next)
         {
-            if (nextAlertIndex == -1)
+            if (alerts.Count == 0 || nextAlertIndex == -1)
             {
                 next = default;
                 return false;

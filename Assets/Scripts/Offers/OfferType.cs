@@ -2,8 +2,9 @@
 {
     public enum OfferType
     {
-        Legit = 0,
-        Scam = 1,
-        Virus = 2,
+        None = 0,
+        Legit = 1,
+        Scam = 2,
+        Virus = 3,
     }
 }

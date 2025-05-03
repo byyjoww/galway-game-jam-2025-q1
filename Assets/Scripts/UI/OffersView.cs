@@ -41,8 +41,9 @@ namespace Scamazon.UI
             }
             else
             {
-                var existing = offers.Select(x => x.OfferID).ToArray();
-                var toRemove = existing.Except(instantiated.Keys).ToArray();
+                var currentAvailableOffers = offers.Select(x => x.OfferID).ToArray();
+                var currentInstantiatedOffers = instantiated.Keys;
+                var toRemove = currentInstantiatedOffers.Except(currentAvailableOffers).ToArray();
                 for (int i = toRemove.Length; i-- > 0;)
                 {
                     var id = toRemove.ElementAt(i);
