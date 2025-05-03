@@ -2,7 +2,7 @@
 {
     public class Review
     {
-        public string Reviewer { get; }
-        public string Text { get; }
+        public string Reviewer { get; set; }
+        public string Text { get; set; }
     }
 }

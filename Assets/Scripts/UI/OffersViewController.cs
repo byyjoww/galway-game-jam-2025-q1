@@ -1,4 +1,5 @@
 ﻿using Scamazon.Offers;
+using System;
 using System.Linq;
 
 namespace Scamazon.UI
@@ -20,31 +21,46 @@ namespace Scamazon.UI
         {
             view.Setup(new OffersView.PresenterModel
             {
-                Offers = model.Offers.Select(x => new OfferView.PresenterModel
-                {
-                    OfferID = x.ID,
-                    ProductName = x.Product.Name,
-                    ProductDescription = x.Product.Description,
-                    HyperlinkText = x.HyperlinkText,
-                    DeliveryDate = x.Delivery.ToString(),
-                    URL = x.Url,
-                    ProductIcon = x.Product.Icon,
-                    ImageHeader1 = x.ImageHeader1,
-                    ImageHeader2 = x.ImageHeader2,
-                    Stars = x.Rating.Stars,
-                    NumOfReviews = $"({x.Rating.NumOfReviews})",
-                    Reviews = new ReviewView.PresenterModel[0],
-                    CanBuy = model.CurrencyAmount >= x.Price,
-                    OnBuy = delegate
-                    {
-                        model.Purchase(x.ID);
-                    },
-                    OnSkip = delegate
-                    {
-                        model.Decline(x.ID);
-                    },
-                }).ToArray(),
+                Offers = model.Offers.Select((x, i) => CreateOffers(x, i)),
             });
+        }
+
+        private OfferView.PresenterModel CreateOffers(Offer offer, int index)
+        {
+            if (offer.ID == "")
+            {
+                return new OfferView.PresenterModel
+                {
+                    OfferID = offer.ID,
+                    OfferIndex = index,
+                };
+            }
+
+           return new OfferView.PresenterModel
+           {
+               OfferID = offer.ID,
+               OfferIndex = index,
+               ProductName = offer.Product.Name,
+               ProductDescription = offer.Product.Description,
+               HyperlinkText = offer.HyperlinkText,
+               DeliveryDate = offer.Delivery.ToString("d"),
+               URL = offer.Url,
+               ProductIcon = offer.Product.Icon,
+               ImageHeader1 = offer.ImageHeader1,
+               ImageHeader2 = offer.ImageHeader2,
+               Stars = offer.Rating.Stars,
+               NumOfReviews = $"({offer.Rating.NumOfReviews})",
+               Reviews = new ReviewView.PresenterModel[0],
+               CanBuy = model.CurrencyAmount >= offer.Price,
+               OnBuy = delegate
+               {
+                   model.Purchase(offer.ID);
+               },
+               OnSkip = delegate
+               {
+                   model.Decline(offer.ID);
+               },
+           };
         }
 
         public override void Dispose()

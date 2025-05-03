@@ -2,8 +2,8 @@
 {
     public class Rating
     {
-        public int NumOfReviews { get; }
-        public int Stars { get; }
-        public Review[] Reviews { get; }
+        public int NumOfReviews { get; set; }
+        public int Stars { get; set; }
+        public Review[] Reviews { get; set; }
     }
 }

@@ -71,6 +71,7 @@ namespace Scamazon.UI
             OfferView rv = Instantiate(offerTemplate, offersRoot);
             rv.Setup(pm);
             rv.gameObject.SetActive(true);
+            rv.transform.SetSiblingIndex(pm.OfferIndex);
             instantiated.Add(pm.OfferID, rv);
         }
     }

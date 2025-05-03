@@ -40,7 +40,7 @@ namespace Scamazon.Offers
                 var off = offers[i];
                 if (off != null && off.ID == offerID)
                 {
-                    offers[i] = null;
+                    offers[i] = new Offer{ ID = "" };
                     return off;
                 }
             }

@@ -1300,7 +1300,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000080109, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: -0.00024414, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2078435904
@@ -1341,8 +1341,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeConfig:
     TimeLimitInSeconds: 180
+  startingCurrency: 1000
   notificationView: {fileID: 1499945728}
   timeLimitView: {fileID: 201532215}
+  offersView: {fileID: 364599303}
 --- !u!1 &763876065566592450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,6 +1731,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8638607589990631790, guid: 862eb172876301a4e89114116cb3aa46, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140058165979155520, guid: 862eb172876301a4e89114116cb3aa46, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140058165979155520, guid: 862eb172876301a4e89114116cb3aa46, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140058165979155520, guid: 862eb172876301a4e89114116cb3aa46, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9157200946271653434, guid: 862eb172876301a4e89114116cb3aa46, type: 3}

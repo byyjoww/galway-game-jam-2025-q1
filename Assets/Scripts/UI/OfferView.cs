@@ -12,6 +12,7 @@ namespace Scamazon.UI
         public struct PresenterModel
         {
             public string OfferID { get; set; }
+            public int OfferIndex { get; set; }
             public string ProductName { get; set; }
             public string ProductDescription { get; set; }
             public string HyperlinkText { get; set; }
@@ -28,6 +29,7 @@ namespace Scamazon.UI
             public UnityAction OnSkip { get; set; }
         }
 
+        [SerializeField] private GameObject panel = default;
         [SerializeField] private TMP_Text productName = default;
         [SerializeField] private TMP_Text productDescription = default;
         [SerializeField] private TMP_Text hyperlinkText = default;
@@ -56,6 +58,7 @@ namespace Scamazon.UI
 
         public void Setup(PresenterModel model)
         {
+            panel.gameObject.SetActive(model.OfferID != "");
             productName.text = model.ProductName;
             productDescription.text = model.ProductDescription;
             hyperlinkText.text = model.HyperlinkText;
@@ -65,7 +68,7 @@ namespace Scamazon.UI
             imageHeader2.text = model.ImageHeader2;
             SetStars(model.Stars);
             numOfReviews.text = model.NumOfReviews;
-            SetReviews(model.Reviews);
+            SetReviews(model.Reviews, true);
             SetButtonAction(buy, model.OnBuy, model.CanBuy);
             SetButtonAction(skip, model.OnSkip);
         }

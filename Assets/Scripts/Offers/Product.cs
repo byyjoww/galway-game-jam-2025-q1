@@ -4,9 +4,9 @@ namespace Scamazon.Offers
 {
     public class Product
     {
-        public string Name { get; }
-        public string Description { get; }
-        public Sprite Icon { get; }
-        public int Score { get; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Sprite Icon { get; set; }
+        public int Score { get; set; }
     }
 }
