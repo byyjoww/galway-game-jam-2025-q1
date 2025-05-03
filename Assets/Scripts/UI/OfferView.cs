@@ -32,7 +32,7 @@ namespace Scamazon.UI
             public UnityAction OnSkip { get; set; }
         }
 
-        [SerializeField] private GameObject panel = default;
+        [SerializeField] private PanelPopIn panel = default;
         [SerializeField] private TMP_Text productName = default;
         [SerializeField] private TMP_Text productDescription = default;
         [SerializeField] private TMP_Text hyperlinkText = default;
@@ -54,6 +54,7 @@ namespace Scamazon.UI
         [SerializeField] private Sprite halfStar = default;
         [SerializeField] private Sprite fullStar = default;
 
+        private bool isEmpty = true;
         private Dictionary<string, ReviewView> instantiated = new Dictionary<string, ReviewView>();
 
         private void Awake()
@@ -64,11 +65,13 @@ namespace Scamazon.UI
         public void Setup(PresenterModel model)
         {
             panel.gameObject.SetActive(!model.IsNull);
-            if (!panel.activeSelf)
+            if (!panel.gameObject.activeSelf)
             {
+                isEmpty = true;
                 return;
             }
 
+            isEmpty = false;
             productName.text = model.ProductName;
             productDescription.text = model.ProductDescription;
             hyperlinkText.text = model.HyperlinkText;
@@ -83,6 +86,25 @@ namespace Scamazon.UI
             SetReviews(model.Reviews, true);
             SetButtonAction(buy, model.OnBuy, model.CanBuy);
             SetButtonAction(skip, model.OnSkip);
+        }
+
+        public void Destroy()
+        {
+            if (isEmpty)
+            {
+                DestroySelf();
+            }
+            else
+            {
+                transform.SetParent(transform.parent.parent);
+                panel.PlayPopOut();
+                Invoke(nameof(DestroySelf), 1f);
+            }
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
         }
 
         private void SetStars(int numOfStars)

@@ -49,7 +49,7 @@ namespace Scamazon.UI
                     var id = toRemove.ElementAt(i);
                     var obj = instantiated[id];
                     instantiated.Remove(id);
-                    Destroy(obj.gameObject);
+                    obj.Destroy();
                 }
             }
 
