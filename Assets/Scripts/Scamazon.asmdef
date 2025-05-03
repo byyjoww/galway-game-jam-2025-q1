@@ -1,0 +1,18 @@
+{
+    "name": "Scamazon",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:c8584e81f08b7944ab9cfb3220aa9c47",
+        "GUID:b9538a1cdab1ec146b83cb2ece5dbdf0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
