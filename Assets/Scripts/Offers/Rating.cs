@@ -1,4 +1,4 @@
-﻿namespace Scamazon.App
+﻿namespace Scamazon.Offers
 {
     public class Rating
     {

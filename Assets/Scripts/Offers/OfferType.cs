@@ -1,4 +1,4 @@
-﻿namespace Scamazon.App
+﻿namespace Scamazon.Offers
 {
     public enum OfferType
     {

@@ -1,11 +1,13 @@
 ﻿using System;
 
-namespace Scamazon.App
+namespace Scamazon.Offers
 {
     public class Offer
     {
+        public string ID { get; }
         public Product Product { get; }
         public float Price { get; }
+        public string HyperlinkText { get; }
         public string Url { get; }
         public Rating Rating { get; }
         public DateTime Delivery { get; }

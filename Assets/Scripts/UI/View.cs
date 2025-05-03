@@ -52,12 +52,17 @@ namespace Scamazon.UI
             OnActiveStateChanged?.Invoke(active);
         }
 
-        protected void SetButtonAction(ButtonViewBase button, UnityAction action)
+        protected void SetButtonAction(ButtonViewBase button, UnityAction action, bool canExecute = true)
         {
             button.Init(audioPlayer);
             button.Button.onClick.RemoveAllListeners();
             button.Button.onClick.AddListener(PlayButtonClickSFX);
-            button.Button.onClick.AddListener(action);
+            if (action != null)
+            {
+                button.Button.onClick.AddListener(action);
+            }
+            
+            button.Button.interactable = canExecute;
         }
 
         protected void SetButtonNavigation(ButtonViewBase button, ButtonViewBase up = null, ButtonViewBase down = null, ButtonViewBase left = null, ButtonViewBase right = null)
