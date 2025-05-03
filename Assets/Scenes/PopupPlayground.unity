@@ -908,6 +908,11 @@ MonoBehaviour:
   bottomTitle: {fileID: 644177761}
   bgImage: {fileID: 1853971162}
   prodImage: {fileID: 1700906370}
+  fonts:
+  - {fileID: 11400000, guid: bcf551ced4c3f5d4c9ec5f99f0324fb2, type: 2}
+  - {fileID: 11400000, guid: 6103743edd14a8e498f187923bf997ac, type: 2}
+  - {fileID: 11400000, guid: 59125ff3f5d8ac9449448158ebecdf05, type: 2}
+  - {fileID: 11400000, guid: 7f6a87b0aa16c9d43a3cf819eb33df21, type: 2}
 --- !u!114 &1853971162
 MonoBehaviour:
   m_ObjectHideFlags: 0

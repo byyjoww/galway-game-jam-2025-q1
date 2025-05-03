@@ -12,6 +12,10 @@ public class Popup : MonoBehaviour
     public Image bgImage;
     public Image prodImage;
 
+    int fontCount = 4;
+    int productCount = 20;
+    public TMP_FontAsset[] fonts;
+
     public static string[] genericTitles = { 
         "Great Deal!", 
         "Buy now!",
@@ -33,7 +37,11 @@ public class Popup : MonoBehaviour
         price.color = randomColor();
         bottomTitle.color = randomColor();
         bgImage.color = new Color(Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f);
-        prodImage.sprite = Resources.Load<Sprite>("prod_" + Random.Range(0, 3));
+        prodImage.sprite = Resources.Load<Sprite>("prod_" + Random.Range(0, productCount));
+
+        title.font = fonts[Random.Range(0, fontCount)];
+        price.font = fonts[Random.Range(0, fontCount)];
+        bottomTitle.font = fonts[Random.Range(0, fontCount)];
     }
 
     // Update is called once per frame
