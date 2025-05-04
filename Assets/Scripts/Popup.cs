@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -35,7 +33,7 @@ public class Popup : MonoBehaviour
     {
 
         title.text = genericTitles[Random.Range(0, genericTitles.Length)];
-        price.text = "$"+Random.Range(9, 50)+".99";
+        //price.text = "$"+Random.Range(9, 50)+".99";
         bottomTitle.text = genericTitles[Random.Range(0, genericTitles.Length)];
 
 
@@ -43,25 +41,38 @@ public class Popup : MonoBehaviour
         price.color = randomTextColor();
         bottomTitle.color = randomTextColor();
         bgImage.color = randomBGColor();
-        prodImage.sprite = Resources.Load<Sprite>("prod_" + Random.Range(0, productCount));
+        //prodImage.sprite = Resources.Load<Sprite>("Products/prod_" + Random.Range(0, productCount));
 
         title.font = fonts[Random.Range(0, fonts.Length)];
         price.font = fonts[Random.Range(1, fonts.Length)];
         bottomTitle.font = fonts[Random.Range(0, fonts.Length)];
 
-        gameObject.transform.localScale = new Vector3(0, 0, 0);
-        LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), 0.4f);
+        //gameObject.transform.localScale = new Vector3(0, 0, 0);
+        //LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), 0.4f);
+
+        LeanTween.scale(title.gameObject, Vector3.one * 1.3f, 0.4f)
+        .setEaseInOutSine()
+        .setLoopPingPong();
+
+        LeanTween.scale(prodImage.gameObject, Vector3.one * 1.2f, 0.55f)
+        .setEaseInOutSine()
+        .setLoopPingPong();
+
+        LeanTween.scale(bottomTitle.gameObject, Vector3.one * 1.2f, 0.3f)
+        .setEaseInOutSine()
+        .setLoopPingPong();
+
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             GetComponent<RectTransform>().anchoredPosition = new Vector2(Random.Range(-450, 450), Random.Range(-250, 250));
 
             Start();
         }
-    }
+    }*/
 
     Color randomBGColor() {
         return new Color(Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f);
