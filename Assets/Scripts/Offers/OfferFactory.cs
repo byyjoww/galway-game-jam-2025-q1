@@ -81,12 +81,12 @@ namespace Scamazon.Offers
 
         private string GenerateHyperlink(Product product, OfferType type, string url)
         {
-            return url;
+            return url.Replace("https://www.", "");
         }
 
         private string GenerateURL(Product product, OfferType type)
         {
-            return "amazin.com";
+            return "https://www.amazin.com";
         }
 
         private DateTime GenerateDeliveryDate(Product product, OfferType type)

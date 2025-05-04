@@ -58,7 +58,7 @@ namespace Scamazon.UI
                 var pm = offers.ElementAt(i);
                 if (instantiated.TryGetValue(pm.OfferID, out var view))
                 {
-                    view.Setup(pm);
+                    // view.Setup(pm);
                 }
                 else
                 {

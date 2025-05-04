@@ -10,6 +10,8 @@ namespace Scamazon.UI
         [SerializeField] private SoundlistSO onSelectAudio = default;
         [HideInInspector] public UnityEvent onSelect = default;
         [HideInInspector] public UnityEvent onDeselect = default;
+        [HideInInspector] public UnityEvent onPointerEnter = default;
+        [HideInInspector] public UnityEvent onPointerExit = default;
 
         private IAudioPlayer audioPlayer = default;
         private EventTrigger eventTrigger = default;
@@ -47,6 +49,24 @@ namespace Scamazon.UI
                 eventID = EventTriggerType.Deselect,
                 callback = onDeselect,
             });
+
+            var onPointerEnter = new EventTrigger.TriggerEvent();
+            onPointerEnter.AddListener(OnPointerEnter);
+
+            eventTrigger.triggers.Add(new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter,
+                callback = onPointerEnter,
+            });
+
+            var onPointerExit = new EventTrigger.TriggerEvent();
+            onPointerExit.AddListener(OnPointerExit);
+
+            eventTrigger.triggers.Add(new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerExit,
+                callback = onPointerExit,
+            });
         }
 
         private void AddEmptyEventTrigger()
@@ -75,6 +95,16 @@ namespace Scamazon.UI
         public virtual void OnDeselect(BaseEventData eventData)
         {
             onDeselect?.Invoke();
+        }
+
+        public virtual void OnPointerEnter(BaseEventData eventData)
+        {
+            onPointerEnter?.Invoke();
+        }
+
+        public virtual void OnPointerExit(BaseEventData eventData)
+        {
+            onPointerExit?.Invoke();
         }
     }
 }

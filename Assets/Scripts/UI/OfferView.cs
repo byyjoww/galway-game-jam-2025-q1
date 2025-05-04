@@ -36,6 +36,7 @@ namespace Scamazon.UI
         [SerializeField] private TMP_Text productName = default;
         [SerializeField] private TMP_Text productDescription = default;
         [SerializeField] private TMP_Text hyperlinkText = default;
+        [SerializeField] private GameObject tooltip = default;
         [SerializeField] private TMP_Text url = default;
         [SerializeField] private TMP_Text price = default;
         [SerializeField] private Image productIcon = default;
@@ -47,6 +48,7 @@ namespace Scamazon.UI
         [SerializeField] private ReviewView reviewTemplate = default;
         [SerializeField] private ButtonViewBase buy = default;
         [SerializeField] private ButtonViewBase skip = default;
+        [SerializeField] private ButtonViewBase hover = default;
         [SerializeField] private Image[] stars = default;
 
         [Header("Icons")]
@@ -86,7 +88,33 @@ namespace Scamazon.UI
             SetReviews(model.Reviews, true);
             SetButtonAction(buy, model.OnBuy, model.CanBuy);
             SetButtonAction(skip, model.OnSkip);
+            SetHoverTooltip();
         }
+
+        private void SetHoverTooltip()
+        {
+            tooltip.SetActive(false);
+            hover.Init(audioPlayer);
+            hover.onPointerEnter.RemoveAllListeners();
+            hover.onPointerEnter.AddListener(delegate
+            {
+                tooltip.SetActive(true);
+            });
+
+            hover.onPointerExit.RemoveAllListeners();
+            hover.onPointerExit.AddListener(delegate
+            {
+                tooltip.SetActive(false);
+            });
+        }
+
+        //private void Update()
+        //{
+        //    if (tooltip.activeSelf)
+        //    {
+        //        tooltip.transform.position = hyperlinkText.transform.position + new Vector3(10f, -20f, 0f);
+        //    }
+        //}
 
         public void Destroy()
         {
