@@ -24,14 +24,11 @@ namespace Scamazon.UI
 
         private void UpdateView()
         {
-            ShowView();
-
-            var time = timeLimit.RemainingTime.ToString(@"mm\:ss");
-            var budget = marketplace.CurrencyAmount.ToString("F2");
+            ShowView();            
             view.Setup(new EndGameView.PresenterModel
             {
-                TimeRemaining = $"Time Remaining: {time}",
-                BudgetRemaining = $"${budget}",
+                TimeRemaining = $"Time Remaining: {timeLimit.RemainingTime.ToString(@"mm\:ss")}",
+                BudgetRemaining = $"${marketplace.CurrencyAmount.ToString("F2")}",
                 TotalScore = $"{marketplace.Score}",
                 OnContinue = delegate
                 {

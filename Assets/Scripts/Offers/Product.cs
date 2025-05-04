@@ -7,6 +7,7 @@ namespace Scamazon.Offers
         public string Name { get; set; }
         public string Description { get; set; }
         public Sprite Icon { get; set; }
+        public float BasePrice { get; set; }
         public int Score { get; set; }
     }
 }
