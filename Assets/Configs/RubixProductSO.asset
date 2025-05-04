@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f766bcddf74952429afd9181ccf34c2, type: 3}
-  m_Name: ScrewdriverProductSO
+  m_Name: RubixProductSO
   m_EditorClassIdentifier: 
-  productName: Screwdriver
-  description: Makes screws feel unwelcome.
-  icon: {fileID: 21300000, guid: 5b46ad566e3c3574a8f385e3f6d6605c, type: 3}
-  score: 50
+  productName: Rubix Cube
+  description: Colorful; unsolvable.
+  icon: {fileID: 21300000, guid: 23232943b3b56b94db8978045aca4742, type: 3}
+  score: 40

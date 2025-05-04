@@ -3200,7 +3200,7 @@ MonoBehaviour:
     TimeLimitInSeconds: 180
   startingCurrency: 1000
   originalCursor: {fileID: 2800000, guid: 66826b1ea20eb9243bbd8b096e8e8558, type: 3}
-  frozenCursor: {fileID: 2800000, guid: 8399a6a313d65c540ae3689ffb98107e, type: 3}
+  frozenCursor: {fileID: 2800000, guid: 99be7791bc710fd41a9a41d484c7d8e9, type: 3}
   products:
     elements:
     - {fileID: 11400000, guid: 8a17b5d698938a941b31c0e98326f3b5, type: 2}
