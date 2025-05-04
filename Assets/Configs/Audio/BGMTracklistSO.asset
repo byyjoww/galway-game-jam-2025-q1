@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 007066e72a1915f4ab494f69b90b7a69, type: 3}
   m_Name: BGMTracklistSO
   m_EditorClassIdentifier: 
-  tracks: []
+  tracks:
+  - name: 
+    clip: {fileID: 8300000, guid: e7846375ea664aa47b14683d45015477, type: 3}
