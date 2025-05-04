@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeConfig:
-    TimeLimitInSeconds: 180
-  startingCurrency: 1000
+    TimeLimitInSeconds: 120
+  startingCurrency: 2000
   offerConfig:
     headers:
     - Limited Time Offer!
