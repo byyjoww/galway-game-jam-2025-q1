@@ -5067,31 +5067,12 @@ MonoBehaviour:
     headers:
     - Limited Time Offer!
     - Great Deal!
-<<<<<<< Updated upstream
     realUrls:
     - https://www.azamon.com
     fakeUrls:
     - https://www.azamon.com
     fakeHyperlinks:
     - azamon.com
-=======
-    - Bargain!
-    - Buy Now!!!
-    - Flash Deal!
-    - One Time Offer!
-    realUrls:
-    - https://www.scamazon.com
-    - https://www.tino.com
-    - https://www.efake.com
-    fakeUrls:
-    - https://www.buyhere.nft
-    - https://www.thisisnotapyramidscheme.com
-    - https://www.makemillions.web3
-    fakeHyperlinks:
-    - buyhere.nft
-    - thisisnotapyramidscheme.com
-    - makemillions.web3
->>>>>>> Stashed changes
     legitMinRating: 100
     legitMaxRating: 1000
     legitMinStars: 6
@@ -5099,7 +5080,6 @@ MonoBehaviour:
     legitMinReviews: 2
     legitMaxReviews: 3
     legitReviewers:
-<<<<<<< Updated upstream
     - Timmy
     - RogerMike93
     - Timmy
@@ -5109,45 +5089,6 @@ MonoBehaviour:
     - I like it lots!
     - Very good product, recommended.
     - Very good product, recommended.
-=======
-    - mikeL_tx89
-    - coolcat333
-    - Timmy
-    - karenLovesDeals
-    - ZhangL_user94
-    - lily1984usa
-    - JennyT_shops
-    - miamiDealsGuy
-    - sandra_nyc4
-    - xXDealSeekerXx
-    legitReviews:
-    - Works as intended, great purchase!
-    - Excellent product that matched description. Would buy again!
-    - Worked out of the box.
-    - Very happy with my purchase!
-    - Exactly like the image. Great seller.
-    - Great value for money!
-    - Took a couple of days longer to arrive but otherwise a great purchase
-    - Unreal value for money.
-    - "Works as expected. Haven\u2019t had any issues so far."
-    - Decent quality for the price. Not amazing, but it does the job
-    - exactly what I needed. shipping was fast and item arrived in good condition
-    - great value for money. not top-tier quality, but definitely worth the price
-    - Used it a few times now and everything seems solid. No major issues.
-    - Happy with the purchase. Might order another one soon.
-    - The color is slightly different from the photo, but not a big deal.
-    - 'I''d been meaning to buy one for a while and glad I finally did. '
-    - 'Works so well I purchased another! '
-    - the size isn't what I expected but that's my fault for not doing more research
-      - otherwise it's a great product
-    - Seller gave great support for an issue I had. Recommended!
-    - Cannot recommend this enough to anyone. My thanks to the seller!
-    - A++
-    - 'Wasn''t aware of the international fee but otherwise a great purchase. '
-    - Works great, thanks!
-    - 'unbelivable discount for the quality of the product. '
-    - Very happy with my purchase!
->>>>>>> Stashed changes
     fakeMinRating: 0
     fakeMaxRating: 20
     fakeMinStars: 0
@@ -5155,7 +5096,6 @@ MonoBehaviour:
     fakeMinReviews: 0
     fakeMaxReviews: 2
     fakeReviewers:
-<<<<<<< Updated upstream
     - Timmy
     - RogerMike93
     - Timmy
@@ -5165,44 +5105,6 @@ MonoBehaviour:
     - I like it lots!
     - Very good product, recommended.
     - Very good product, recommended.
-=======
-    - user39427
-    - buynfthere
-    - clickmybio
-    - getinstagramfollowers
-    - cryptolover
-    - "!!!hfjb$\xA32"
-    - 053user
-    - spam6969
-    - notarealaccount
-    - user20935
-    fakeReviews:
-    - Much good. yOU SHOULD BUY
-    - Love this
-    - omg
-    - i have 10 million pounds to put in your bank account
-    - this is amazing
-    - 336549i32iaxxxfhfhi737i
-    - Ok
-    - Your credit card has been compromised. Please send your Social Security number.
-    - Looking for hot, sexy girls in your area?
-    - I love you
-    - CEO, entrepreneur, Born in 1964
-    - here's my paypal
-    - Everything iz OK
-    - Love it love it love itt!
-    - will make you feel like a man
-    - yes
-    - this is gud deal
-    - I have a great deal for you Call me
-    - this is a totally legit review
-    - Please click the link to earn $$$
-    - The product is very product
-    - 'you should buy this. the best this. very good. '
-    - cool
-    - ummmmmmmmmmmmmmmmmmmmm
-    - beep boop
->>>>>>> Stashed changes
   originalCursor: {fileID: 2800000, guid: 66826b1ea20eb9243bbd8b096e8e8558, type: 3}
   frozenCursor: {fileID: 2800000, guid: 0a681454c3ebf6344b8c48d9f153a64c, type: 3}
   buttonClick: {fileID: 11400000, guid: 1772f897cf56d414791b29af66b4434d, type: 2}
