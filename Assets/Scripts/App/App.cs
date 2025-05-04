@@ -22,23 +22,27 @@ namespace Scamazon.App
         [SerializeField] private TimeLimitView timeLimitView = default;
         [SerializeField] private OffersView offersView = default;
         [SerializeField] private CurrencyView currencyView = default;
+        [SerializeField] private AntivirusView antivirusView = default;
 
         // Models
         private TimeLimit timeLimit = default;
         private OfferFactory offerFactory = default;
         private Marketplace marketplace = default;
+        private Antivirus antivirus = default;
 
         // View controllers
         private NotificationViewController notificationViewController = default;
         private TimeLimitViewController timeLimitViewController = default;
         private OffersViewController offersViewController = default;
         private CurrencyViewController currencyViewController = default;
+        private AntivirusViewController antivirusViewController = default;
 
         private void Start()
         {
             timeLimit = new TimeLimit(timeConfig);
             offerFactory = new OfferFactory(products.Elements);
             marketplace = new Marketplace(offerFactory, startingCurrency);
+            antivirus = new Antivirus();
 
             CreateViewControllers();
 
@@ -52,19 +56,23 @@ namespace Scamazon.App
             timeLimitViewController = new TimeLimitViewController(timeLimitView, timeLimit, notificationViewController);
             offersViewController = new OffersViewController(offersView, marketplace);
             currencyViewController = new CurrencyViewController(currencyView, marketplace);
+            antivirusViewController = new AntivirusViewController(antivirusView, antivirus);
 
             notificationViewController?.Init();
             timeLimitViewController?.Init();
             offersViewController?.Init();
             currencyViewController?.Init();
+            antivirusViewController?.Init();
         }
 
         private void OnDestroy()
         {
+            antivirusViewController?.Dispose();
+            currencyViewController?.Dispose();
             offersViewController?.Dispose();
             timeLimitViewController?.Dispose();
             notificationViewController?.Dispose();
-            currencyViewController?.Dispose();
+
             timeLimit?.Dispose();
             marketplace?.Dispose();
         }
