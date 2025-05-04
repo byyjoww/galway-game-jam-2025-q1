@@ -35,6 +35,10 @@ namespace Scamazon.App
         [SerializeField] private AudioSourceWrapper sfxSource = default;
         [SerializeField] private AudioMixer mixer = default;
 
+        [Header("Virus")]
+        [SerializeField] private RectTransform popupRoot = default;
+        [SerializeField] private GameObject[] virusPopups = default;
+
         [Header("Views")]
         [SerializeField] private NotificationView notificationView = default;
         [SerializeField] private TimeLimitView timeLimitView = default;
@@ -44,7 +48,7 @@ namespace Scamazon.App
         [SerializeField] private DesktopIconsView desktopIconsView = default;
         [SerializeField] private ScoreView scoreView = default;
         [SerializeField] private StartGameView startGameView = default;
-        [SerializeField] private EndGameView endGameView = default;
+        [SerializeField] private EndGameView endGameView = default;        
         [SerializeField] private View[] views = default;
 
         // Models
@@ -77,9 +81,11 @@ namespace Scamazon.App
             views.ForEach(x => x.SetButtonAudio(buttonClick));
 
             timeLimit = new TimeLimit(timeConfig);
+            timeLimit.OnExpire += EndGame;
+
             offerFactory = new OfferFactory(products.Elements, offerConfig);
             cursor = new PlayerCursor(originalCursor, frozenCursor);
-            antivirus = new Antivirus(cursor);
+            antivirus = new Antivirus(cursor, popupRoot, virusPopups, this);
             marketplace = new Marketplace(offerFactory, antivirus, startingCurrency);
 
             CreateViewControllers();
@@ -153,10 +159,14 @@ namespace Scamazon.App
             startGameViewController?.Dispose();
             endGameViewController?.Dispose();
 
-            timeLimit?.Dispose();
             marketplace?.Dispose();
             antivirus?.Dispose();
             audioSystem?.Dispose();
+            timeLimit?.Dispose();
+            if (timeLimit != null)
+            {
+                timeLimit.OnExpire -= EndGame;
+            }
         }
 
 #if UNITY_EDITOR

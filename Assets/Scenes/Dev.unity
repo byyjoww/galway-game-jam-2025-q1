@@ -1850,6 +1850,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &733978714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 733978715}
+  m_Layer: 5
+  m_Name: Popups
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &733978715
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733978714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1513988269}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 35.41687}
+  m_SizeDelta: {x: -310.8701, y: -192.5729}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &893204040
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4146,7 @@ RectTransform:
   - {fileID: 201532214}
   - {fileID: 380697508}
   - {fileID: 146714035}
+  - {fileID: 733978715}
   - {fileID: 910170846}
   - {fileID: 1499945727}
   - {fileID: 1199388811}
@@ -5199,6 +5235,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1949754982}
     - target: {fileID: 2176633178496370040, guid: 8d6489859d9b349439d6fc0bef5fa93f, type: 3}
+      propertyPath: popupRoot
+      value: 
+      objectReference: {fileID: 733978715}
+    - target: {fileID: 2176633178496370040, guid: 8d6489859d9b349439d6fc0bef5fa93f, type: 3}
       propertyPath: scoreView
       value: 
       objectReference: {fileID: 146714036}
@@ -5290,6 +5330,14 @@ PrefabInstance:
       propertyPath: views.Array.data[11]
       value: 
       objectReference: {fileID: 5716035907891025179}
+    - target: {fileID: 2176633178496370040, guid: 8d6489859d9b349439d6fc0bef5fa93f, type: 3}
+      propertyPath: virusPopups.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176633178496370040, guid: 8d6489859d9b349439d6fc0bef5fa93f, type: 3}
+      propertyPath: virusPopups.Array.data[0]
+      value: 
+      objectReference: {fileID: 9192330349427732831, guid: d6987b1d8b98b294699b1b7e24d15929, type: 3}
     - target: {fileID: 5257835376753958885, guid: 8d6489859d9b349439d6fc0bef5fa93f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

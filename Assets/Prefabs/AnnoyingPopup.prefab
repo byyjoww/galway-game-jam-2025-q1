@@ -196,9 +196,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2368134789803721596}
-        m_TargetAssemblyTypeName: AnnoyingPopup, Scamazon
-        m_MethodName: onClose
+      - m_Target: {fileID: 8368898773779105230}
+        m_TargetAssemblyTypeName: Scamazon.UI.PanelPopIn, Scamazon
+        m_MethodName: PlayPopOut
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -488,6 +488,8 @@ GameObject:
   - component: {fileID: 563673035281595471}
   - component: {fileID: 2513074887847391129}
   - component: {fileID: 2368134789803721596}
+  - component: {fileID: 4757618806650727210}
+  - component: {fileID: 8368898773779105230}
   m_Layer: 0
   m_Name: AnnoyingPopup
   m_TagString: Untagged
@@ -576,3 +578,45 @@ MonoBehaviour:
   bgImage: {fileID: 2513074887847391129}
   shockImage: {fileID: 7126322564485556776}
   title: {fileID: 2835474364146618519}
+--- !u!225 &4757618806650727210
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192330349427732831}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8368898773779105230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192330349427732831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d81c58190ae2a24aaed68cd31126acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playOnEnable: 1
+  _destroyOnPopOut: 1
+  _startingXScale: 0.8
+  _startingYScale: 0.8
+  _scaleSpeed: 0.2
+  _overshootScaleAmount: 0
+  _overshootReturnSpeed: 0
+  _startingOpacity: 0.5
+  _opacityChangeSpeed: 0.2
+  _startPosOffset: {x: 0, y: 0}
+  _moveInSpeed: 0
+  _endingXScale: 1.2
+  _endingYScale: 1.2
+  _scaleOutSpeed: 0.2
+  _endingOpacity: 0
+  _opacityOutSpeed: 0.2
+  _endPosOffset: {x: 0, y: 0}
+  _moveOutSpeed: 0

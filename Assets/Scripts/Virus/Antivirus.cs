@@ -1,4 +1,5 @@
 ﻿using Scamazon.Cursor;
+using SLS.Core.Tools;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,6 +8,9 @@ namespace Scamazon.Virus
 {
     public class Antivirus : IDisposable
     {
+        private MonoBehaviour coroutineStarter = default;
+        private RectTransform popupRoot = default;
+        private GameObject[] popups = default; 
         private PlayerCursor cursor = default;
 
         public Virus Current { get; private set; }
@@ -14,9 +18,12 @@ namespace Scamazon.Virus
         public event UnityAction<Virus> OnVirusDetected;
         public event UnityAction<Virus> OnVirusQuarantined;
 
-        public Antivirus(PlayerCursor cursor)
+        public Antivirus(PlayerCursor cursor, RectTransform popupRoot, GameObject[] popups, MonoBehaviour coroutineStarter)
         {
             this.cursor = cursor;
+            this.popupRoot = popupRoot;
+            this.popups = popups;
+            this.coroutineStarter = coroutineStarter;
         }
 
         public void CreateVirus()
@@ -36,7 +43,9 @@ namespace Scamazon.Virus
 
         private Virus Create()
         {
-            return new FreezeVirus(cursor, 10f);
+            return RNG.RollSuccess(0.5f)
+                ? new FreezeVirus(cursor, 10f)
+                : new PopupVirus(coroutineStarter, popupRoot, popups, 3f);
         }
 
         private void OnVirusEnded()

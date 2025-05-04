@@ -1,5 +1,6 @@
 ﻿using Scamazon.Cursor;
-using UnityEngine;
+using SLS.Core.Timers;
+using System;
 using UnityEngine.EventSystems;
 
 namespace Scamazon.Virus
@@ -28,7 +29,7 @@ namespace Scamazon.Virus
                 eventSystem.enabled = true;
             }
 
-            cursor?.SetOriginalCursor();            
+            cursor?.SetOriginalCursor();
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Scamazon.UI
     public class PanelPopIn : MonoBehaviour
     {
         [SerializeField] private bool _playOnEnable = true;
+        [SerializeField] private bool _destroyOnPopOut = false;
 
         [Header("PopIn Settings")]
         [Range(0, 2)]
@@ -97,6 +98,8 @@ namespace Scamazon.UI
 
         public void PlayPopOut()
         {
+            _startPos = _panelToAnimate.anchoredPosition;
+
             if (_popOutRoutine != null) { StopCoroutine(_popOutRoutine); }
             _popOutRoutine = StartCoroutine(PopOutRoutine());
 
@@ -105,6 +108,11 @@ namespace Scamazon.UI
 
             if (_moveOutRoutine != null) { StopCoroutine(_moveOutRoutine); }
             _moveOutRoutine = StartCoroutine(MoveOutRoutine());
+
+            if (_destroyOnPopOut)
+            {
+                Destroy(gameObject, 2f);
+            }            
         }
 
         public void Stop()
