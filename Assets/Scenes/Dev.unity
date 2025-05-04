@@ -1273,6 +1273,17 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1520427107}
+--- !u!114 &326103385 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1598230064142623745, guid: 862eb172876301a4e89114116cb3aa46, type: 3}
+  m_PrefabInstance: {fileID: 5716035907891025178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0a0bd7859bb0a4b8417d55231b6251, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &364599301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2214,6 +2225,8 @@ MonoBehaviour:
   quarantine: {fileID: 45055336}
   originTransform: {fileID: 570419641}
   destinationTransform: {fileID: 1266942216}
+  onVirusDetected: {fileID: 11400000, guid: 5fca9ab5e1a8cad408be98e668c8b069, type: 2}
+  onVirusQuarantined: {fileID: 11400000, guid: 2db5fa78457a23346ae6396f55de9660, type: 2}
 --- !u!1 &915487735
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,8 +5063,51 @@ MonoBehaviour:
   timeConfig:
     TimeLimitInSeconds: 180
   startingCurrency: 1000
+  offerConfig:
+    headers:
+    - Limited Time Offer!
+    - Great Deal!
+    realUrls:
+    - https://www.azamon.com
+    fakeUrls:
+    - https://www.azamon.com
+    fakeHyperlinks:
+    - azamon.com
+    legitMinRating: 100
+    legitMaxRating: 1000
+    legitMinStars: 6
+    legitMaxStars: 10
+    legitMinReviews: 2
+    legitMaxReviews: 3
+    legitReviewers:
+    - Timmy
+    - RogerMike93
+    - Timmy
+    - RogerMike93
+    legitReviews:
+    - I like it lots!
+    - I like it lots!
+    - Very good product, recommended.
+    - Very good product, recommended.
+    fakeMinRating: 0
+    fakeMaxRating: 20
+    fakeMinStars: 0
+    fakeMaxStars: 6
+    fakeMinReviews: 0
+    fakeMaxReviews: 2
+    fakeReviewers:
+    - Timmy
+    - RogerMike93
+    - Timmy
+    - RogerMike93
+    fakeReviews:
+    - I like it lots!
+    - I like it lots!
+    - Very good product, recommended.
+    - Very good product, recommended.
   originalCursor: {fileID: 2800000, guid: 66826b1ea20eb9243bbd8b096e8e8558, type: 3}
   frozenCursor: {fileID: 2800000, guid: 0a681454c3ebf6344b8c48d9f153a64c, type: 3}
+  buttonClick: {fileID: 11400000, guid: 1772f897cf56d414791b29af66b4434d, type: 2}
   products:
     elements:
     - {fileID: 11400000, guid: 7925e6ed372487044af2092e770d981c, type: 2}
@@ -5083,6 +5139,16 @@ MonoBehaviour:
   scoreView: {fileID: 146714036}
   startGameView: {fileID: 1199388812}
   endGameView: {fileID: 449352551}
+  views:
+  - {fileID: 326103385}
+  - {fileID: 146714036}
+  - {fileID: 201532215}
+  - {fileID: 364599303}
+  - {fileID: 380697509}
+  - {fileID: 910170847}
+  - {fileID: 1335314769}
+  - {fileID: 1499945728}
+  - {fileID: 5716035907891025179}
 --- !u!1 &763876065566592450
 GameObject:
   m_ObjectHideFlags: 0

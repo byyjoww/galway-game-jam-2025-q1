@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Scamazon.Audio;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -56,6 +57,9 @@ namespace Scamazon.UI
         [SerializeField] private Sprite halfStar = default;
         [SerializeField] private Sprite fullStar = default;
 
+        [Header("Audio")]
+        [SerializeField] private SoundlistSO onBuy = default;
+
         private bool isEmpty = true;
         private Dictionary<string, ReviewView> instantiated = new Dictionary<string, ReviewView>();
 
@@ -87,6 +91,7 @@ namespace Scamazon.UI
             numOfReviews.text = model.NumOfReviews;
             SetReviews(model.Reviews, true);
             SetButtonAction(buy, model.OnBuy, model.CanBuy);
+            buy.Button.onClick.AddListener(delegate { PlayOneShotAudio(onBuy); });
             SetButtonAction(skip, model.OnSkip);
             SetHoverTooltip();
         }

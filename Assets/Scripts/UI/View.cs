@@ -77,6 +77,14 @@ namespace Scamazon.UI
             };
         }
 
+        public void PlayOneShotAudio(ISoundlist soundlist)
+        {
+            if (soundlist != null && soundlist.TryGetRandomClip(out var clip))
+            {
+                audioPlayer?.PlayOneShot(clip);
+            }
+        }
+
         private void PlayShowSFX()
         {
             if (onShowSFX != null && onShowSFX.TryGetRandomClip(out var clip))
@@ -100,6 +108,7 @@ namespace Scamazon.UI
                 Debug.LogWarning($"No tracklist present when attempting to play ButtonClickSFX.{gameObject.name}");
                 return;
             }
+
             if (buttonSfx.TryGetRandomClip(out AudioClip clip))
             {
                 audioPlayer.PlayOneShot(clip);
