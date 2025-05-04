@@ -18,6 +18,7 @@ namespace Scamazon.UI
 
         [Header("Audio")]
         [SerializeField] private SoundlistSO onBuy = default;
+        [SerializeField] private SoundlistSO onScam = default;
 
         private Dictionary<string, OfferView> instantiated = new Dictionary<string, OfferView>();
 
@@ -74,6 +75,11 @@ namespace Scamazon.UI
         public void PlayPurchaseSFX()
         {
             PlayOneShotAudio(onBuy);
+        }
+
+        public void PlayScammedSFX()
+        {
+            PlayOneShotAudio(onScam);
         }
 
         private void Create(OfferView.PresenterModel pm)
