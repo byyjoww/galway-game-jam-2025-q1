@@ -1,6 +1,8 @@
+using Scamazon.Cursor;
 using Scamazon.Offers;
 using Scamazon.Timers;
 using Scamazon.UI;
+using Scamazon.Virus;
 using SLS.Core;
 using System;
 using System.Collections;
@@ -15,6 +17,8 @@ namespace Scamazon.App
         [SerializeField] private float startingCurrency = default;
 
         [Header("Data")]
+        [SerializeField] private Texture2D originalCursor = default;
+        [SerializeField] private Texture2D frozenCursor = default;
         [SerializeField] private Database<ProductSO> products = default;
 
         [Header("Views")]
@@ -23,12 +27,14 @@ namespace Scamazon.App
         [SerializeField] private OffersView offersView = default;
         [SerializeField] private CurrencyView currencyView = default;
         [SerializeField] private AntivirusView antivirusView = default;
+        [SerializeField] private DesktopIconsView desktopIconsView = default;
 
         // Models
         private TimeLimit timeLimit = default;
         private OfferFactory offerFactory = default;
         private Marketplace marketplace = default;
         private Antivirus antivirus = default;
+        private PlayerCursor cursor = default;
 
         // View controllers
         private NotificationViewController notificationViewController = default;
@@ -36,16 +42,19 @@ namespace Scamazon.App
         private OffersViewController offersViewController = default;
         private CurrencyViewController currencyViewController = default;
         private AntivirusViewController antivirusViewController = default;
+        private DesktopIconsViewController desktopIconsViewController = default;
 
         private void Start()
         {
             timeLimit = new TimeLimit(timeConfig);
             offerFactory = new OfferFactory(products.Elements);
-            marketplace = new Marketplace(offerFactory, startingCurrency);
-            antivirus = new Antivirus();
+            cursor = new PlayerCursor(originalCursor, frozenCursor);
+            antivirus = new Antivirus(cursor);
+            marketplace = new Marketplace(offerFactory, antivirus, startingCurrency);            
 
             CreateViewControllers();
 
+            cursor.SetOriginalCursor();
             timeLimit.Start();
             marketplace.StartShowingOffers();
         }
@@ -57,16 +66,19 @@ namespace Scamazon.App
             offersViewController = new OffersViewController(offersView, marketplace);
             currencyViewController = new CurrencyViewController(currencyView, marketplace);
             antivirusViewController = new AntivirusViewController(antivirusView, antivirus);
+            desktopIconsViewController = new DesktopIconsViewController(desktopIconsView);
 
             notificationViewController?.Init();
             timeLimitViewController?.Init();
             offersViewController?.Init();
             currencyViewController?.Init();
             antivirusViewController?.Init();
+            desktopIconsViewController?.Init();
         }
 
         private void OnDestroy()
         {
+            desktopIconsViewController?.Dispose();
             antivirusViewController?.Dispose();
             currencyViewController?.Dispose();
             offersViewController?.Dispose();
@@ -75,6 +87,7 @@ namespace Scamazon.App
 
             timeLimit?.Dispose();
             marketplace?.Dispose();
+            antivirus?.Dispose();
         }
 
         private void OnValidate()

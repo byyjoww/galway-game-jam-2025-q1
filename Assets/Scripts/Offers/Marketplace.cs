@@ -1,4 +1,5 @@
-﻿using SLS.Core.Timers;
+﻿using Scamazon.Virus;
+using SLS.Core.Timers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace Scamazon.Offers
         private const float STANDARD_OFFER_CREATION_DELAY = 5f;
 
         private OfferFactory offerFactory = default;
+        private Antivirus antivirus = default;
         private RandomEventTimer creationTimer = default;
         private ITimer delay = default;
         private float currency = default;
@@ -30,9 +32,10 @@ namespace Scamazon.Offers
 
         public UnityAction OnValueChanged;
 
-        public Marketplace(OfferFactory offerFactory, float startingCurrency)
+        public Marketplace(OfferFactory offerFactory, Antivirus antivirus, float startingCurrency)
         {
             this.offerFactory = offerFactory;
+            this.antivirus = antivirus;
             this.currency = startingCurrency;
             purchases = new List<Offer>();
             skips = new List<Offer>();
@@ -66,9 +69,18 @@ namespace Scamazon.Offers
 
         public void Purchase(string offerID)
         {
-            Offer offer = ClearAndReturnOffer(offerID);
-            currency -= offer.Price;
-            purchases.Add(offer);
+            Offer offer = ClearAndReturnOffer(offerID);            
+            purchases.Add(offer);            
+
+            if (offer.Type == OfferType.Virus)
+            {
+                antivirus.CreateVirus();
+            }
+            else
+            {
+                currency -= offer.Price;
+            }
+
             OnValueChanged?.Invoke();
         }
 

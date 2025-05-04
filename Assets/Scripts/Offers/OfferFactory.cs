@@ -1,4 +1,5 @@
 ﻿using SLS.Core.Extensions;
+using SLS.Core.Tools;
 using System;
 using System.Collections.Generic;
 
@@ -38,6 +39,20 @@ namespace Scamazon.Offers
 
         private OfferType GenerateOfferType()
         {
+            return OfferType.Virus;
+
+            if (RNG.RollSuccess(0.35f))
+            {
+                if (RNG.RollSuccess(0.5f))
+                {
+                    return OfferType.Scam;
+                }
+                else
+                {
+                    return OfferType.Virus;
+                }
+            }
+
             return OfferType.Legit;
         }
 

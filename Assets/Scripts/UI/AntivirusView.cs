@@ -22,8 +22,8 @@ namespace Scamazon.UI
             quarantine.transform.position = origin;
         }
 
-        [ContextMenu("Setup")]
-        public void Setup()
+        [ContextMenu("Show Quarantined")]
+        public void ShowQuarantined()
         {
             if (tweenId.HasValue)
             {
@@ -32,12 +32,12 @@ namespace Scamazon.UI
 
             quarantine.transform.position = origin;
             var tween = LeanTween
-                .moveY(quarantine.gameObject, destination.y, timeToMove)                
-                .setOnComplete(() => 
+                .moveY(quarantine.gameObject, destination.y, timeToMove)
+                .setOnComplete(() =>
                 {
                     quarantine.transform.position = destination;
                     LeanTween.cancel(tweenId.Value);
-                    var tween = LeanTween                        
+                    var tween = LeanTween
                         .moveY(quarantine.gameObject, origin.y, timeToMove)
                         .setDelay(timeVisible)
                         .setOnComplete(() =>
