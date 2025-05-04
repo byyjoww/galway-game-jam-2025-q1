@@ -48,7 +48,7 @@ namespace Scamazon.UI
                ProductName = offer.Product.Name,
                ProductDescription = offer.Product.Description,
                HyperlinkText = offer.HyperlinkText,
-               DeliveryDate = offer.Delivery.ToString("d"),
+               DeliveryDate = $"Delivery: {offer.Delivery.ToString("d")}",
                URL = offer.Url,
                ProductPrice = $"$<s>{offer.Product.BasePrice.ToString("F2")}</s>",
                ProductIcon = offer.Product.Icon,
@@ -74,6 +74,7 @@ namespace Scamazon.UI
         {
             if (offer.Type == OfferType.Scam)
             {
+                view.PlayScammedSFX();
                 notificationViewController.Enqueue(new NotificationView.PresenterModel
                 {
                     NotificationText = "You were scammed!!!",
