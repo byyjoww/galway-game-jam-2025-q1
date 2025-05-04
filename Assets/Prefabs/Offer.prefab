@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 5589377547489770252}
   - component: {fileID: 1513753011837402415}
   m_Layer: 5
-  m_Name: Price
+  m_Name: ExpectedPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,6 +16,7 @@ namespace Scamazon.App
     {
         [SerializeField] private TimeLimit.Config timeConfig = default;
         [SerializeField] private float startingCurrency = default;
+        [SerializeField] private OfferFactory.Config offerConfig = default;
 
         [Header("Data")]
         [SerializeField] private Texture2D originalCursor = default;
@@ -58,7 +59,7 @@ namespace Scamazon.App
         private void Start()
         {
             timeLimit = new TimeLimit(timeConfig);
-            offerFactory = new OfferFactory(products.Elements);
+            offerFactory = new OfferFactory(products.Elements, offerConfig);
             cursor = new PlayerCursor(originalCursor, frozenCursor);
             antivirus = new Antivirus(cursor);
             marketplace = new Marketplace(offerFactory, antivirus, startingCurrency);

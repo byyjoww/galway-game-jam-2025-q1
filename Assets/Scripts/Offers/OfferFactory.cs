@@ -8,74 +8,79 @@ namespace Scamazon.Offers
 {
     public class OfferFactory
     {
+        [System.Serializable]
+        public class Config
+        {
+            public string[] headers = new string[]
+            {
+                "Limited Time Offer!",
+                "Great Deal!",
+            };
+
+            public string[] realUrls = new string[]
+            {
+                "https://www.azamon.com"
+            };
+
+            public string[] fakeUrls = new string[]
+            {
+                "https://www.azamon.com"
+            };
+
+            public string[] fakeHyperlinks = new string[]
+            {
+                "azamon.com"
+            };
+
+            public int legitMinRating = 100;
+            public int legitMaxRating = 1000;
+            public int legitMinStars = 6;
+            public int legitMaxStars = 10;
+            public int legitMinReviews = 2;
+            public int legitMaxReviews = 3;
+
+            public string[] legitReviewers = new string[]
+            {
+                "Timmy",
+                "RogerMike93",
+                "Timmy",
+                "RogerMike93",
+            };
+
+            public string[] legitReviews = new string[]
+            {
+                "I like it lots!",
+                "I like it lots!",
+                "Very good product, recommended.",
+                "Very good product, recommended.",
+            };
+
+            public int fakeMinRating = 0;
+            public int fakeMaxRating = 20;
+            public int fakeMinStars = 0;
+            public int fakeMaxStars = 6;
+            public int fakeMinReviews = 0;
+            public int fakeMaxReviews = 2;
+
+            public string[] fakeReviewers = new string[]
+            {
+                "Timmy",
+                "RogerMike93",
+                "Timmy",
+                "RogerMike93",
+            };
+
+            public string[] fakeReviews = new string[]
+            {
+                "I like it lots!",
+                "I like it lots!",
+                "Very good product, recommended.",
+                "Very good product, recommended.",
+            };
+        }
+
         private IEnumerable<IProduct> products = default;
-
-        private string[] headers = new string[]
-        {
-            "Limited Time Offer!",
-            "Great Deal!",
-        };
-
-        private string[] realUrls = new string[]
-        {
-            "https://www.azamon.com"
-        };
-
-        private string[] fakeUrls = new string[]
-        {
-            "https://www.azamon.com"
-        };
-
-        private string[] fakeHyperlinks = new string[]
-        {
-            "azamon.com"
-        };
-                
-        private int legitMinRating = 100;
-        private int legitMaxRating = 1000;
-        private int legitMinStars = 6;
-        private int legitMaxStars = 10;
-        private int legitMinReviews = 2;
-        private int legitMaxReviews = 3;
-
-        private string[] legitReviewers = new string[]
-        {
-            "Timmy",
-            "RogerMike93",
-            "Timmy",
-            "RogerMike93",
-        };
-
-        private string[] legitReviews = new string[]
-        {
-            "I like it lots!",
-            "I like it lots!",
-            "Very good product, recommended.",
-            "Very good product, recommended.",
-        };
-
-        private int fakeMinRating = 0;
-        private int fakeMaxRating = 20;
-        private int fakeMinStars = 0;
-        private int fakeMaxStars = 6;
-        private int fakeMinReviews = 0;
-        private int fakeMaxReviews = 2;
-
-        private string[] fakeReviewers = new string[]
-        {
-            "Timmy",
-            "RogerMike93",
-            "Timmy",
-            "RogerMike93",
-        };
-
-        private string[] fakeReviews = new string[]
-        {
-            "I like it lots!",
-            "I like it lots!",
-            "Very good product, recommended.",
-            "Very good product, recommended.",
-        };
+        private Config config = default;
 
         private enum FakeIndicator
         {
@@ -85,9 +90,10 @@ namespace Scamazon.Offers
             Price,
         }
 
-        public OfferFactory(IEnumerable<IProduct> products)
+        public OfferFactory(IEnumerable<IProduct> products, Config config)
         {
             this.products = products;
+            this.config = config;
         }
 
         public Offer CreateOffer()
@@ -195,9 +201,9 @@ namespace Scamazon.Offers
             if (type == OfferType.Legit || !indicators.Contains(FakeIndicator.Reviews))
             {
                 var reviews = new List<Review>();
-                var reviewerOpts = legitReviewers.ToList();
-                var reviewOpts = legitReviews.ToList();
-                int numOfReviews = RNG.RollBetween(legitMinReviews, legitMaxReviews);
+                var reviewerOpts = config.legitReviewers.ToList();
+                var reviewOpts = config.legitReviews.ToList();
+                int numOfReviews = RNG.RollBetween(config.legitMinReviews, config.legitMaxReviews);
                 for (int i = 0; i < numOfReviews; i++)
                 {
                     var selectedReviewer = reviewerOpts.RandomOrDefault();
@@ -213,17 +219,17 @@ namespace Scamazon.Offers
 
                 return new Rating
                 {
-                    NumOfReviews = RNG.RollBetween(legitMinRating, legitMaxRating),
-                    Stars = RNG.RollBetween(legitMinStars, legitMaxStars),
+                    NumOfReviews = RNG.RollBetween(config.legitMinRating, config.legitMaxRating),
+                    Stars = RNG.RollBetween(config.legitMinStars, config.legitMaxStars),
                     Reviews = reviews.ToArray(),
                 };
             }
             else if (RNG.RollSuccess(0.9f))
             {
                 var reviews = new List<Review>();
-                var reviewerOpts = fakeReviewers.ToList();
-                var reviewOpts = fakeReviews.ToList();
-                int numOfReviews = RNG.RollBetween(fakeMinReviews, fakeMaxReviews);
+                var reviewerOpts = config.fakeReviewers.ToList();
+                var reviewOpts = config.fakeReviews.ToList();
+                int numOfReviews = RNG.RollBetween(config.fakeMinReviews, config.fakeMaxReviews);
                 for (int i = 0; i < numOfReviews; i++)
                 {
                     var selectedReviewer = reviewerOpts.RandomOrDefault();
@@ -239,15 +245,15 @@ namespace Scamazon.Offers
 
                 return new Rating
                 {
-                    NumOfReviews = RNG.RollBetween(fakeMinRating, fakeMaxRating),
-                    Stars = RNG.RollBetween(fakeMinStars, fakeMaxStars),
+                    NumOfReviews = RNG.RollBetween(config.fakeMinRating, config.fakeMaxRating),
+                    Stars = RNG.RollBetween(config.fakeMinStars, config.fakeMaxStars),
                     Reviews = reviews.ToArray(),
                 };
             }
             else
             {
                 var reviews = new List<Review>();
-                var reviewOpts = fakeReviews.ToList();
+                var reviewOpts = config.fakeReviews.ToList();
                 int numOfReviews = RNG.RollBetween(4, 5);
                 for (int i = 0; i < numOfReviews; i++)
                 {
@@ -295,14 +301,14 @@ namespace Scamazon.Offers
                 return url.Replace("https://www.", "");
             }
 
-            return fakeHyperlinks.RandomOrDefault();
+            return config.fakeHyperlinks.RandomOrDefault();
         }
 
         private string GenerateURL(Product product, OfferType type, FakeIndicator[] indicators)
         {
             return type == OfferType.Legit || !indicators.Contains(FakeIndicator.URL)
-                ? realUrls.RandomOrDefault() 
-                : fakeUrls.RandomOrDefault();
+                ? config.realUrls.RandomOrDefault() 
+                : config.fakeUrls.RandomOrDefault();
         }
 
         private DateTime GenerateDeliveryDate(Product product, OfferType type, FakeIndicator[] indicators)
@@ -327,7 +333,7 @@ namespace Scamazon.Offers
 
         private (string, string) GenerateHeaders(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            var options = headers.ToList();
+            var options = config.headers.ToList();
             var opt1 = options.Random();
             options.Remove(opt1);
             var opt2 = options.Random();
