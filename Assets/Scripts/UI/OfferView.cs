@@ -19,9 +19,9 @@ namespace Scamazon.UI
             public string HyperlinkText { get; set; }
             public string DeliveryDate { get; set; }
             public string URL { get; set; }
-            public string Price { get; set; }
+            public string ProductPrice { get; set; }
             public Sprite ProductIcon { get; set; }
-            public string ImagePrice { get; set; }
+            public string OfferPrice { get; set; }
             public string ImageHeader1 { get; set; }
             public string ImageHeader2 { get; set; }
             public int Stars { get; set; }
@@ -78,9 +78,9 @@ namespace Scamazon.UI
             productDescription.text = model.ProductDescription;
             hyperlinkText.text = model.HyperlinkText;
             url.text = model.URL;
-            price.text = model.Price;
+            price.text = model.ProductPrice;
             productIcon.sprite = model.ProductIcon;
-            imagePrice.text = model.ImagePrice;
+            imagePrice.text = model.OfferPrice;
             imageHeader1.text = model.ImageHeader1;
             imageHeader2.text = model.ImageHeader2;
             SetStars(model.Stars);
