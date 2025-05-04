@@ -29,7 +29,7 @@ public class AnnoyingPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shockImage.sprite = bgSprites[Random.Range(0, 3)];
+        shockImage.sprite = bgSprites[Random.Range(0, bgSprites.Length)];
         title.text = genericTitles[Random.Range(0, genericTitles.Length)];
 
         title.color = randomTextColor();
@@ -44,19 +44,19 @@ public class AnnoyingPopup : MonoBehaviour
         .setLoopPingPong();
     }
 
-    void Update()
+    /*void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GetComponent<RectTransform>().anchoredPosition = new Vector2(Random.Range(-450, 450), Random.Range(-250, 250));
 
-            shockImage.sprite = bgSprites[Random.Range(0, 3)];
+            shockImage.sprite = bgSprites[Random.Range(0, bgSprites.Length)];
             title.text = genericTitles[Random.Range(0, genericTitles.Length)];
 
             title.color = randomTextColor();
             bgImage.color = randomBGColor();
         }
-    }
+    }*/
 
 
     Color randomBGColor()
