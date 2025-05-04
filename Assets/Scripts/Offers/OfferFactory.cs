@@ -31,12 +31,12 @@ namespace Scamazon.Offers
             "azamon.com"
         };
                 
-        private int legitMinRating = default;
-        private int legitMaxRating = default;
-        private int legitMinStars = default;
-        private int legitMaxStars = default;
-        private int legitMinReviews = default;
-        private int legitMaxReviews = default;
+        private int legitMinRating = 100;
+        private int legitMaxRating = 1000;
+        private int legitMinStars = 6;
+        private int legitMaxStars = 10;
+        private int legitMinReviews = 2;
+        private int legitMaxReviews = 3;
 
         private string[] legitReviewers = new string[]
         {
@@ -54,12 +54,12 @@ namespace Scamazon.Offers
             "Very good product, recommended.",
         };
 
-        private int fakeMinRating = default;
-        private int fakeMaxRating = default;
-        private int fakeMinStars = default;
-        private int fakeMaxStars = default;
-        private int fakeMinReviews = default;
-        private int fakeMaxReviews = default;
+        private int fakeMinRating = 0;
+        private int fakeMaxRating = 20;
+        private int fakeMinStars = 0;
+        private int fakeMaxStars = 6;
+        private int fakeMinReviews = 0;
+        private int fakeMaxReviews = 2;
 
         private string[] fakeReviewers = new string[]
         {
@@ -186,6 +186,7 @@ namespace Scamazon.Offers
                 Description = product.Description,
                 Icon = product.Icon,
                 Score = product.Score,
+                BasePrice = product.Score * 1.00f,
             };
         }
 
@@ -217,7 +218,7 @@ namespace Scamazon.Offers
                     Reviews = reviews.ToArray(),
                 };
             }
-            else
+            else if (RNG.RollSuccess(0.9f))
             {
                 var reviews = new List<Review>();
                 var reviewerOpts = fakeReviewers.ToList();
@@ -243,14 +244,37 @@ namespace Scamazon.Offers
                     Reviews = reviews.ToArray(),
                 };
             }
+            else
+            {
+                var reviews = new List<Review>();
+                var reviewOpts = fakeReviews.ToList();
+                int numOfReviews = RNG.RollBetween(4, 5);
+                for (int i = 0; i < numOfReviews; i++)
+                {
+                    var selectedReviewer = "bot_";
+                    var selectedReview = reviewOpts.RandomOrDefault();
+                    reviewOpts.Remove(selectedReview);
+                    reviews.Add(new Review
+                    {
+                        Reviewer = $"{selectedReviewer}{RNG.RollBetween(1000, 5000)}",
+                        Text = selectedReview,
+                    });
+                }
+
+                return new Rating
+                {
+                    NumOfReviews = RNG.RollBetween(1000, 100000),
+                    Stars = RNG.RollBetween(8, 10),
+                    Reviews = reviews.ToArray(),
+                };
+            }
         }
 
         private (float, float) GeneratePrice(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            var basePrice = product.Score * 1.00f;
             if (type != OfferType.Legit && indicators.Contains(FakeIndicator.Price))
             {
-                return (basePrice * 0.05f, 0.05f);
+                return (product.BasePrice * 0.05f, 0.05f);
             }
 
             float variance = 0.5f;
@@ -259,8 +283,8 @@ namespace Scamazon.Offers
                 variance = 0.8f;
             }
 
-            float value = RNG.RollVariance(basePrice, variance);
-            float weight = (value - basePrice) / basePrice;
+            float value = RNG.RollVariance(product.BasePrice, variance);
+            float weight = (value - product.BasePrice) / product.BasePrice;
             return (value, weight);
         }
 
