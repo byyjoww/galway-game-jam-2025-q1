@@ -87,6 +87,11 @@ namespace Scamazon.UI
                     },
                 });
             }
+
+            if (offer.Type == OfferType.Legit)
+            {
+                view.PlayPurchaseSFX();
+            }
         }
 
         private ReviewView.PresenterModel CreateReview(Review review)

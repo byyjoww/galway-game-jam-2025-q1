@@ -2402,8 +2402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9882188b026edbe4cabde498564ceecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShowSFX: {fileID: 0}
-  onHideSFX: {fileID: 0}
+  onShowSFX: {fileID: 11400000, guid: 0ec579cd53bb54449b0e684b72bc4b9d, type: 2}
+  onHideSFX: {fileID: 11400000, guid: ba1ec6eb6ed5f7b47a68b445c111f9aa, type: 2}
   panel: {fileID: 8905880756082252154}
   productName: {fileID: 5178800336497843845}
   productDescription: {fileID: 6755621502196719805}

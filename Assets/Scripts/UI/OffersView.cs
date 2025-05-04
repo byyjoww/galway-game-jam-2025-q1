@@ -1,4 +1,5 @@
-﻿using SLS.Core.Extensions;
+﻿using Scamazon.Audio;
+using SLS.Core.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +15,9 @@ namespace Scamazon.UI
 
         [SerializeField] private Transform offersRoot = default;
         [SerializeField] private OfferView offerTemplate = default;
+
+        [Header("Audio")]
+        [SerializeField] private SoundlistSO onBuy = default;
 
         private Dictionary<string, OfferView> instantiated = new Dictionary<string, OfferView>();
 
@@ -65,6 +69,11 @@ namespace Scamazon.UI
                     Create(pm);
                 }
             }
+        }
+
+        public void PlayPurchaseSFX()
+        {
+            PlayOneShotAudio(onBuy);
         }
 
         private void Create(OfferView.PresenterModel pm)
