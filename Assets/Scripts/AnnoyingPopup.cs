@@ -17,6 +17,12 @@ public class AnnoyingPopup : MonoBehaviour
         "Singles in your area!",
         "Singles are waiting for you!",
         "Lifetime supply of easy singles!",
+        "George Clooney wants you!",
+        "You won a FREE car!",
+        "This ketchup hack will amaze you!",
+        "Never drink water again!",
+        "Is standing up a sin???",
+        "Free coffee enema!",
     };
 
 
@@ -61,12 +67,12 @@ public class AnnoyingPopup : MonoBehaviour
 
     Color randomBGColor()
     {
-        return new Color(Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f);
+        return new Color(Random.Range(150, 255f) / 255f, Random.Range(150, 255f) / 255f, Random.Range(150, 255f) / 255f);
     }
 
     Color randomTextColor()
     {
-        return new Color(Random.Range(0, 120f) / 255f, Random.Range(0, 120f) / 255f, Random.Range(0, 120f) / 255f);
+        return new Color(Random.Range(0, 100f) / 255f, Random.Range(0, 100f) / 255f, Random.Range(0, 100f) / 255f);
     }
 
     public void onClose() {
