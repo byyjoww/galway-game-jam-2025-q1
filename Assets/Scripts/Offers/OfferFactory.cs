@@ -2,12 +2,88 @@
 using SLS.Core.Tools;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Scamazon.Offers
 {
     public class OfferFactory
     {
         private IEnumerable<IProduct> products = default;
+
+        private string[] headers = new string[]
+        {
+            "Limited Time Offer!",
+            "Great Deal!",
+        };
+
+        private string[] realUrls = new string[]
+        {
+            "https://www.azamon.com"
+        };
+
+        private string[] fakeUrls = new string[]
+        {
+            "https://www.azamon.com"
+        };
+
+        private string[] fakeHyperlinks = new string[]
+        {
+            "azamon.com"
+        };
+                
+        private int legitMinRating = default;
+        private int legitMaxRating = default;
+        private int legitMinStars = default;
+        private int legitMaxStars = default;
+        private int legitMinReviews = default;
+        private int legitMaxReviews = default;
+
+        private string[] legitReviewers = new string[]
+        {
+            "Timmy",
+            "RogerMike93",
+            "Timmy",
+            "RogerMike93",
+        };
+
+        private string[] legitReviews = new string[]
+        {
+            "I like it lots!",
+            "I like it lots!",
+            "Very good product, recommended.",
+            "Very good product, recommended.",
+        };
+
+        private int fakeMinRating = default;
+        private int fakeMaxRating = default;
+        private int fakeMinStars = default;
+        private int fakeMaxStars = default;
+        private int fakeMinReviews = default;
+        private int fakeMaxReviews = default;
+
+        private string[] fakeReviewers = new string[]
+        {
+            "Timmy",
+            "RogerMike93",
+            "Timmy",
+            "RogerMike93",
+        };
+
+        private string[] fakeReviews = new string[]
+        {
+            "I like it lots!",
+            "I like it lots!",
+            "Very good product, recommended.",
+            "Very good product, recommended.",
+        };
+
+        private enum FakeIndicator
+        {
+            URL,
+            Reviews,
+            Delivery,
+            Price,
+        }
 
         public OfferFactory(IEnumerable<IProduct> products)
         {
@@ -18,19 +94,26 @@ namespace Scamazon.Offers
         {
             var template = products.Random();
             var offerType = GenerateOfferType();
-            var product = GenerateProduct(template, offerType);
-            var url = GenerateURL(product, offerType);
-            var headers = GenerateHeaders(product, offerType);
+            var indicator = GetFakeIndicator(offerType);
+            var product = GenerateProduct(template, offerType, indicator);
+            var url = GenerateURL(product, offerType, indicator);
+            var headers = GenerateHeaders(product, offerType, indicator);
+            var priceAndVariance = GeneratePrice(product, offerType, indicator);
+            var hyperlink = GenerateHyperlink(product, offerType, url, indicator);
+            var rating = GenerateRating(product, offerType, indicator);
+            var delivery = GenerateDeliveryDate(product, offerType, indicator);
+            var duration = GenerateOfferDuration(product, offerType, priceAndVariance.Item2, indicator);
+
             return new Offer
             {
                 ID = Guid.NewGuid().ToString(),
                 Product = product,
-                Price = GeneratePrice(product, offerType),
-                HyperlinkText = GenerateHyperlink(product, offerType, url),
+                Price = priceAndVariance.Item1,
+                HyperlinkText = hyperlink,
                 Url = url,
-                Rating = GenerateRating(product, offerType),
-                Delivery = GenerateDeliveryDate(product, offerType),
-                Duration = GenerateOfferDuration(product, offerType),
+                Rating = rating,
+                Delivery = delivery,
+                Duration = duration,
                 Type = offerType,
                 ImageHeader1 = headers.Item1,
                 ImageHeader2 = headers.Item2,
@@ -54,7 +137,48 @@ namespace Scamazon.Offers
             return OfferType.Legit;
         }
 
-        private Product GenerateProduct(IProduct product, OfferType type)
+        private FakeIndicator[] GetFakeIndicator(OfferType type)
+        {
+            if (type == OfferType.Legit)
+            {
+                return new FakeIndicator[0];
+            }
+
+            List<FakeIndicator> possible;
+            if (type == OfferType.Virus)
+            {
+                possible = new List<FakeIndicator>()
+                {
+                    FakeIndicator.URL,
+                    FakeIndicator.Reviews,
+                    FakeIndicator.Delivery,
+                    FakeIndicator.Price,
+                };
+            }
+            else
+            {
+                possible = new List<FakeIndicator>()
+                {
+                    FakeIndicator.URL,
+                    FakeIndicator.Reviews,
+                    FakeIndicator.Delivery,
+                    FakeIndicator.Price,
+                };
+            }
+
+            int numOfIndicators = RNG.RollBetween(1, 3);
+            var indicators = new List<FakeIndicator>();
+            for (int i = 0; i < numOfIndicators; i++)
+            {
+                var selected = possible.RandomOrDefault();
+                possible.Remove(selected);
+                indicators.Add(selected);
+            }
+
+            return indicators.ToArray();
+        }
+
+        private Product GenerateProduct(IProduct product, OfferType type, FakeIndicator[] indicators)
         {
             return new Product
             {
@@ -65,63 +189,125 @@ namespace Scamazon.Offers
             };
         }
 
-        private Rating GenerateRating(Product product, OfferType type)
+        private Rating GenerateRating(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            return new Rating
+            if (type == OfferType.Legit || !indicators.Contains(FakeIndicator.Reviews))
             {
-                NumOfReviews = 20,
-                Stars = 4,
-                Reviews = new Review[]
+                var reviews = new List<Review>();
+                var reviewerOpts = legitReviewers.ToList();
+                var reviewOpts = legitReviews.ToList();
+                int numOfReviews = RNG.RollBetween(legitMinReviews, legitMaxReviews);
+                for (int i = 0; i < numOfReviews; i++)
                 {
-                    new Review
+                    var selectedReviewer = reviewerOpts.RandomOrDefault();
+                    var selectedReview = reviewOpts.RandomOrDefault();
+                    reviewerOpts.Remove(selectedReviewer);
+                    reviewOpts.Remove(selectedReview);
+                    reviews.Add(new Review
                     {
-                        Reviewer = "Timmy",
-                        Text = "I like it lots!",
-                    },
-                    new Review
+                        Reviewer = selectedReviewer,
+                        Text = selectedReview,
+                    });
+                }
+
+                return new Rating
+                {
+                    NumOfReviews = RNG.RollBetween(legitMinRating, legitMaxRating),
+                    Stars = RNG.RollBetween(legitMinStars, legitMaxStars),
+                    Reviews = reviews.ToArray(),
+                };
+            }
+            else
+            {
+                var reviews = new List<Review>();
+                var reviewerOpts = fakeReviewers.ToList();
+                var reviewOpts = fakeReviews.ToList();
+                int numOfReviews = RNG.RollBetween(fakeMinReviews, fakeMaxReviews);
+                for (int i = 0; i < numOfReviews; i++)
+                {
+                    var selectedReviewer = reviewerOpts.RandomOrDefault();
+                    var selectedReview = reviewOpts.RandomOrDefault();
+                    reviewerOpts.Remove(selectedReviewer);
+                    reviewOpts.Remove(selectedReview);
+                    reviews.Add(new Review
                     {
-                        Reviewer = "RogerMike93",
-                        Text = "Very good product, recommended.",
-                    },
-                },
-            };
+                        Reviewer = selectedReviewer,
+                        Text = selectedReview,
+                    });
+                }
+
+                return new Rating
+                {
+                    NumOfReviews = RNG.RollBetween(fakeMinRating, fakeMaxRating),
+                    Stars = RNG.RollBetween(fakeMinStars, fakeMaxStars),
+                    Reviews = reviews.ToArray(),
+                };
+            }
         }
 
-        private float GeneratePrice(Product product, OfferType type)
+        private (float, float) GeneratePrice(Product product, OfferType type, FakeIndicator[] indicators)
         {
             var basePrice = product.Score * 1.00f;
+            if (type != OfferType.Legit && indicators.Contains(FakeIndicator.Price))
+            {
+                return (basePrice * 0.05f, 0.05f);
+            }
+
             float variance = 0.5f;
             if (type != OfferType.Legit)
             {
                 variance = 0.8f;
             }
 
-            return RNG.RollVariance(basePrice, variance);
+            float value = RNG.RollVariance(basePrice, variance);
+            float weight = (value - basePrice) / basePrice;
+            return (value, weight);
         }
 
-        private string GenerateHyperlink(Product product, OfferType type, string url)
+        private string GenerateHyperlink(Product product, OfferType type, string url, FakeIndicator[] indicators)
         {
-            return url.Replace("https://www.", "");
+            if (type == OfferType.Legit || !indicators.Contains(FakeIndicator.URL) || RNG.RollSuccess(0.5f))
+            {
+                return url.Replace("https://www.", "");
+            }
+
+            return fakeHyperlinks.RandomOrDefault();
         }
 
-        private string GenerateURL(Product product, OfferType type)
+        private string GenerateURL(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            return "https://www.amazin.com";
+            return type == OfferType.Legit || !indicators.Contains(FakeIndicator.URL)
+                ? realUrls.RandomOrDefault() 
+                : fakeUrls.RandomOrDefault();
         }
 
-        private DateTime GenerateDeliveryDate(Product product, OfferType type)
+        private DateTime GenerateDeliveryDate(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            return DateTime.Now.AddDays(7);
+            if (indicators.Contains(FakeIndicator.Delivery))
+            {
+                var pastDays = RNG.RollVariance(500, 0.9f);
+                return DateTime.Now.AddDays(-pastDays);
+            }
+
+            var date = RNG.RollVariance(6, 0.5f);
+            return DateTime.Now.AddDays(date);
         }
 
-        private float GenerateOfferDuration(Product product, OfferType type)
+        private float GenerateOfferDuration(Product product, OfferType type, float weight, FakeIndicator[] indicators)
         {
-            return 15f;
+            var baseDuration = 15f;
+            var weightRange = baseDuration / 3;
+            var weightedDuration = baseDuration + (weightRange * weight);
+            return RNG.RollVariance(weightedDuration, 0.3f);
         }
 
-        private (string, string) GenerateHeaders(Product product, OfferType type)
+        private (string, string) GenerateHeaders(Product product, OfferType type, FakeIndicator[] indicators)
         {
-            return ("Limited Time Offer!", "Great Deal!");
+            var options = headers.ToList();
+            var opt1 = options.Random();
+            options.Remove(opt1);
+            var opt2 = options.Random();
+            return (opt1, opt2);
         }
     }
 }
