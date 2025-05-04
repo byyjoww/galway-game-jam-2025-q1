@@ -128,7 +128,7 @@ namespace Scamazon.Offers
 
         private OfferType GenerateOfferType()
         {
-            if (RNG.RollSuccess(0.35f))
+            if (RNG.RollSuccess(0.4f))
             {
                 if (RNG.RollSuccess(0.5f))
                 {
@@ -289,7 +289,9 @@ namespace Scamazon.Offers
                 variance = 0.8f;
             }
 
-            float value = RNG.RollVariance(product.BasePrice, variance);
+            float min = product.BasePrice * (1 - variance);
+            float max = product.BasePrice;
+            float value = RNG.RollBetween(min, max);
             float weight = (value - product.BasePrice) / product.BasePrice;
             return (value, weight);
         }
