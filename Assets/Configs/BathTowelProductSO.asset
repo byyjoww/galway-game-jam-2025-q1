@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BathTowelProductSO
   m_EditorClassIdentifier: 
   productName: Bath Towel
-  description: 'Wipes of shampoo and regrets. '
+  description:
+  - 'Wipes of shampoo and regrets. '
+  - 'Gets wet for you. '
   icon: {fileID: 21300000, guid: 55fce34322d94b84f96d09bfe24459b7, type: 3}
   score: 80

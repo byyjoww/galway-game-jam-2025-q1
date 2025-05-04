@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: DogProductSO
   m_EditorClassIdentifier: 
   productName: Dog
-  description: It's a dog.
+  description:
+  - It's a dog.
+  - The best boi.
   icon: {fileID: 21300000, guid: 56da4bb36d75884468398dc00e9d6fc7, type: 3}
   score: 200

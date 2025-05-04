@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: WaterGunProductSO
   m_EditorClassIdentifier: 
   productName: Water Gun
-  description: Chill firearm.
+  description:
+  - Shoots water, not justice.
+  - Chill firearm.
   icon: {fileID: 21300000, guid: 584f59ffdc4b13f4f8e1e6fca7d230f7, type: 3}
   score: 70

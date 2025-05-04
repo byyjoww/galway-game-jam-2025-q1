@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: RubixProductSO
   m_EditorClassIdentifier: 
   productName: Rubix Cube
-  description: Colorful; unsolvable.
+  description:
+  - Colorful; unsolvable.
+  - A block to make you look dumb.
   icon: {fileID: 21300000, guid: 23232943b3b56b94db8978045aca4742, type: 3}
   score: 40

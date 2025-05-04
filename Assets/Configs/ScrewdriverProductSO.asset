@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ScrewdriverProductSO
   m_EditorClassIdentifier: 
   productName: Screwdriver
-  description: Makes screws feel unwelcome.
+  description:
+  - Makes screws feel unwelcome.
+  - Pokes metal in a helpful way.
   icon: {fileID: 21300000, guid: 5b46ad566e3c3574a8f385e3f6d6605c, type: 3}
   score: 50

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: KnivesProductSO
   m_EditorClassIdentifier: 
   productName: Knives
-  description: Cuts veggies, not tension.
+  description:
+  - Cuts veggies, not tension.
+  - Let me see what you have - a knife!
   icon: {fileID: 21300000, guid: 066f936a106a3274f9cce167354584af, type: 3}
   score: 60

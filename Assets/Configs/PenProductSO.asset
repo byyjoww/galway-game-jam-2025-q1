@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PenProductSO
   m_EditorClassIdentifier: 
   productName: Pen
-  description: For writing reminders you'll forget to read.
+  description:
+  - For writing reminders you'll forget to read.
+  - 'The tool of failed writers. '
   icon: {fileID: 21300000, guid: 2c22cfcb0acbf9848a225d049aab786d, type: 3}
   score: 10

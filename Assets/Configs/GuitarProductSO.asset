@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: GuitarProductSO
   m_EditorClassIdentifier: 
   productName: Guitar
-  description: Wooden noise plank.
+  description:
+  - Wooden noise plank.
+  - Screaming approval.
   icon: {fileID: 21300000, guid: 32033f6fb333fc840a523e9e523fd19c, type: 3}
   score: 180

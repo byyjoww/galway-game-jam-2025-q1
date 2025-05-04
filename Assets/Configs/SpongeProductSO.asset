@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SpongeProductSO
   m_EditorClassIdentifier: 
   productName: Sponge
-  description: Cannot absorb feelings.
+  description:
+  - Absorbent and yellow and porous is he..
+  - 'Cannot absorb feelings. '
   icon: {fileID: 21300000, guid: d19f7c88bdc179b4ab4bea7d0180c086, type: 3}
   score: 20

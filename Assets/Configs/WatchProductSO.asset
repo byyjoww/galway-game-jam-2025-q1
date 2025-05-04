@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: WatchProductSO
   m_EditorClassIdentifier: 
   productName: Watch
-  description: 'Counts time and your impending demise. '
+  description:
+  - 'Counts time and your impending demise. '
+  - A numerical representation of the sun.
   icon: {fileID: 21300000, guid: 4c889bf5a471a4947bcf78df9e9117d7, type: 3}
   score: 150

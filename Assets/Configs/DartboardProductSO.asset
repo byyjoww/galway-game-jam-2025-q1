@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: DartboardProductSO
   m_EditorClassIdentifier: 
   productName: Dartboard
-  description: Target for darts and questionable life choices.
+  description:
+  - Target for darts and questionable life choices.
+  - 'The instrument of divorced dads. '
   icon: {fileID: 21300000, guid: cdabf5eb1d8c7004bb2a113b29098f9a, type: 3}
   score: 110

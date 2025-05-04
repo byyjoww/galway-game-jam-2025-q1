@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: BookshelfProductSO
   m_EditorClassIdentifier: 
   productName: Bookshelf
-  description: "Where books go to pretend they\u2019ve been read."
+  description:
+  - "Where books go to pretend they\u2019ve been read."
+  - 'Funko Pop holder. '
   icon: {fileID: 21300000, guid: 0274309c1f8d74140826996bcd7edb85, type: 3}
   score: 120

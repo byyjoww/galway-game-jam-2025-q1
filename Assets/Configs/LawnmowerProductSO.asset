@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: LawnmowerProductSO
   m_EditorClassIdentifier: 
   productName: Lawnmower
-  description: A grass blender.
+  description:
+  - Loud grass eater that hates daisies.
+  - A grass blender.
   icon: {fileID: 21300000, guid: b767f5196f849a44a9b9546d2ee0b630, type: 3}
   score: 160

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: WashingMachineProductSO
   m_EditorClassIdentifier: 
   productName: Washing Machine
-  description: Destroyer of cashmere.
+  description:
+  - Destroyer of cashmere.
+  - Shrinker of shirts.
   icon: {fileID: 21300000, guid: d109592e84f90424f99bf7ce4656fef8, type: 3}
   score: 190
