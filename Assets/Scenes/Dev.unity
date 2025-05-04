@@ -5054,7 +5054,26 @@ MonoBehaviour:
   frozenCursor: {fileID: 2800000, guid: 8399a6a313d65c540ae3689ffb98107e, type: 3}
   products:
     elements:
+    - {fileID: 11400000, guid: 7925e6ed372487044af2092e770d981c, type: 2}
+    - {fileID: 11400000, guid: 26cb0d39c2dd0d34689dc34af3af9ac8, type: 2}
+    - {fileID: 11400000, guid: 9dacb23117eb23545919342edfa7136d, type: 2}
+    - {fileID: 11400000, guid: 9c105414b0b48e540bb8c4eeb6e730dd, type: 2}
+    - {fileID: 11400000, guid: d3ec1bd1b8ab0da439d4808fb06238a5, type: 2}
+    - {fileID: 11400000, guid: 903a7a72b59b63841b0d98fd836a6cdc, type: 2}
+    - {fileID: 11400000, guid: 0763bac9605158e459d9ad8897c4ff42, type: 2}
+    - {fileID: 11400000, guid: a696dc199c4a86046855cfbf5fbf5314, type: 2}
+    - {fileID: 11400000, guid: b0382d14759f29e46b27e534d11ea3aa, type: 2}
+    - {fileID: 11400000, guid: b87f4dc7629a52b4b888d2e06f17fd43, type: 2}
+    - {fileID: 11400000, guid: 847a6bfe141ffb94c9e6055ce2428813, type: 2}
+    - {fileID: 11400000, guid: e336d13c14100d34dbbadac72eb4e50c, type: 2}
     - {fileID: 11400000, guid: 8a17b5d698938a941b31c0e98326f3b5, type: 2}
+    - {fileID: 11400000, guid: 1b570945aa76d9d4c939da2277d9e8f5, type: 2}
+    - {fileID: 11400000, guid: 114894d634b01be42a77886d918bd0e4, type: 2}
+    - {fileID: 11400000, guid: 5b1eb059be946e04ea2e52ab3112edd0, type: 2}
+    - {fileID: 11400000, guid: 3b2645c300643bf48adbb11c794764f7, type: 2}
+    - {fileID: 11400000, guid: 65aaae2453cf1f443b6e7882730f9968, type: 2}
+    - {fileID: 11400000, guid: c4b040d292d44894aaf57eac6c0ff402, type: 2}
+    - {fileID: 11400000, guid: 0bd4d608b15930149991abf45c5e0b50, type: 2}
   notificationView: {fileID: 1499945728}
   timeLimitView: {fileID: 201532215}
   offersView: {fileID: 364599303}
