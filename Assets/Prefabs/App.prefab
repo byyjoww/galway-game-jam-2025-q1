@@ -178,7 +178,8 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   mixer: {fileID: 24100000, guid: b3923e3755f98e040b08b89e43870810, type: 2}
   popupRoot: {fileID: 0}
-  virusPopups: []
+  virusPopups:
+  - {fileID: 9192330349427732831, guid: d6987b1d8b98b294699b1b7e24d15929, type: 3}
   notificationView: {fileID: 0}
   timeLimitView: {fileID: 0}
   offersView: {fileID: 0}
