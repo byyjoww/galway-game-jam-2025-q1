@@ -11,6 +11,7 @@ using UnityEngine.Audio;
 using UnityEngine.Events;
 
 #if UNITY_EDITOR
+using UnityEditor.SceneManagement;
 using UnityEditor;
 #endif
 
@@ -162,7 +163,12 @@ namespace Scamazon.App
         private void OnValidate()
         {
             products?.Refresh();
-            views = FindObjectsOfType<View>(true);
+
+            if (PrefabUtility.IsPartOfNonAssetPrefabInstance(gameObject) && PrefabStageUtility.GetCurrentPrefabStage() == null)
+            {
+                views = FindObjectsOfType<View>(true);
+            }
+
             EditorUtility.SetDirty(this);
         }
 #endif

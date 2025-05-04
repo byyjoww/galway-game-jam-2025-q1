@@ -186,13 +186,4 @@ MonoBehaviour:
   scoreView: {fileID: 0}
   startGameView: {fileID: 0}
   endGameView: {fileID: 0}
-  views:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  views: []
