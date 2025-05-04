@@ -89,7 +89,14 @@ namespace Scamazon.Offers
 
         private float GeneratePrice(Product product, OfferType type)
         {
-            return 1.99f;
+            var basePrice = product.Score * 1.00f;
+            float variance = 0.5f;
+            if (type != OfferType.Legit)
+            {
+                variance = 0.8f;
+            }
+
+            return RNG.RollVariance(basePrice, variance);
         }
 
         private string GenerateHyperlink(Product product, OfferType type, string url)

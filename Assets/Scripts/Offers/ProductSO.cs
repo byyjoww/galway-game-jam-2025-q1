@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SLS.Core.Extensions;
+using UnityEngine;
 
 namespace Scamazon.Offers
 {
@@ -6,12 +7,12 @@ namespace Scamazon.Offers
     public class ProductSO : ScriptableObject, IProduct
     {
         [SerializeField] private string productName = default;
-        [SerializeField] private string description = default;
+        [SerializeField] private string[] description = default;
         [SerializeField] private Sprite icon = default;
         [SerializeField] private int score = default;
 
         public string ProductName => productName;
-        public string Description => description;
+        public string Description => description.RandomOrDefault();
         public Sprite Icon => icon;
         public int Score => score;
     }
