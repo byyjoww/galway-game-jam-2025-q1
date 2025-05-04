@@ -9,9 +9,9 @@ namespace Scamazon.Virus
     {
         private PlayerCursor cursor = default;
 
-        private Virus current = default;
+        public Virus Current { get; private set; }
 
-        public event UnityAction<Virus> OnVirusStarted;
+        public event UnityAction<Virus> OnVirusDetected;
         public event UnityAction<Virus> OnVirusQuarantined;
 
         public Antivirus(PlayerCursor cursor)
@@ -21,33 +21,33 @@ namespace Scamazon.Virus
 
         public void CreateVirus()
         {
-            current?.Dispose();
-            
-            current = Create();
-            current.OnEnd += OnVirusEnded;
-            current.Execute();
-            OnVirusStarted?.Invoke(current);
+            Current?.Dispose();
+
+            Current = Create();
+            Current.OnEnd += OnVirusEnded;
+            Current.Execute();
+            OnVirusDetected?.Invoke(Current);
         }
 
         private Virus Create()
         {
-            return new FreezeVirus(cursor, 5f);
+            return new FreezeVirus(cursor, 10f);
         }
 
         private void OnVirusEnded()
         {
-            current.OnEnd -= OnVirusEnded;
-            OnVirusQuarantined?.Invoke(current);
-            current = null;
+            Current.OnEnd -= OnVirusEnded;
+            OnVirusQuarantined?.Invoke(Current);
+            Current = null;
         }
 
         public void Dispose()
         {
-            if (current != null)
+            if (Current != null)
             {
-                current.OnEnd -= OnVirusEnded;
-                current?.Dispose();
-                current = null;
+                Current.OnEnd -= OnVirusEnded;
+                Current?.Dispose();
+                Current = null;
             }            
         }
     }

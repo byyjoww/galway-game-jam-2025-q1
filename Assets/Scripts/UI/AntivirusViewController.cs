@@ -1,4 +1,5 @@
 ﻿using Scamazon.Virus;
+using System;
 
 namespace Scamazon.UI
 {
@@ -11,7 +12,13 @@ namespace Scamazon.UI
 
         public override void Init()
         {
+            model.OnVirusDetected += OnDetected;
             model.OnVirusQuarantined += OnQuarantine;
+        }
+
+        private void OnDetected(Virus.Virus virus)
+        {
+            view.ShowDetected();
         }
 
         private void OnQuarantine(Virus.Virus virus)
@@ -21,6 +28,7 @@ namespace Scamazon.UI
 
         public override void Dispose()
         {
+            model.OnVirusDetected -= OnDetected;
             model.OnVirusQuarantined -= OnQuarantine;
         }
     }
