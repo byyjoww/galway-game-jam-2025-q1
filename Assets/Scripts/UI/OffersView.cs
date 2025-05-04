@@ -78,10 +78,10 @@ namespace Scamazon.UI
 
         private void Create(OfferView.PresenterModel pm)
         {
-            OfferView rv = Instantiate(offerTemplate, offersRoot);
-            rv.Setup(pm);
+            OfferView rv = Instantiate(offerTemplate, offersRoot);            
             rv.SetAudioPlayer(audioPlayer);
             rv.SetButtonAudio(buttonSfx);
+            rv.Setup(pm);
             rv.gameObject.SetActive(true);
             rv.transform.SetSiblingIndex(pm.OfferIndex);
             instantiated.Add(pm.OfferID, rv);

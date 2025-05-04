@@ -41,6 +41,7 @@ namespace Scamazon.UI
         [SerializeField] private TMP_Text url = default;
         [SerializeField] private TMP_Text price = default;
         [SerializeField] private Image productIcon = default;
+        [SerializeField] private TMP_Text deliveryDate = default;
         [SerializeField] private TMP_Text imagePrice = default;
         [SerializeField] private TMP_Text imageHeader1 = default;
         [SerializeField] private TMP_Text imageHeader2 = default;
@@ -73,7 +74,7 @@ namespace Scamazon.UI
                 isEmpty = true;
                 return;
             }
-
+                        
             isEmpty = false;
             productName.text = model.ProductName;
             productDescription.text = model.ProductDescription;
@@ -81,6 +82,7 @@ namespace Scamazon.UI
             url.text = model.URL;
             price.text = model.ProductPrice;
             productIcon.sprite = model.ProductIcon;
+            deliveryDate.text = model.DeliveryDate;
             imagePrice.text = model.OfferPrice;
             imageHeader1.text = model.ImageHeader1;
             imageHeader2.text = model.ImageHeader2;
@@ -90,6 +92,7 @@ namespace Scamazon.UI
             SetButtonAction(buy, model.OnBuy, model.CanBuy);
             SetButtonAction(skip, model.OnSkip);
             SetHoverTooltip();
+            PlayShowSFX();
         }
 
         private void SetHoverTooltip()
@@ -118,13 +121,14 @@ namespace Scamazon.UI
         //}
 
         public void Destroy()
-        {
+        {            
             if (isEmpty)
             {
                 DestroySelf();
             }
             else
             {
+                PlayHideSFX();
                 transform.SetParent(transform.parent.parent);
                 panel.PlayPopOut();
                 Invoke(nameof(DestroySelf), 1f);

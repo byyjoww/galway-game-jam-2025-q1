@@ -85,7 +85,7 @@ namespace Scamazon.UI
             }
         }
 
-        private void PlayShowSFX()
+        public void PlayShowSFX()
         {
             if (onShowSFX != null && onShowSFX.TryGetRandomClip(out var clip))
             {
@@ -93,7 +93,7 @@ namespace Scamazon.UI
             }
         }
 
-        private void PlayHideSFX()
+        public void PlayHideSFX()
         {
             if (onHideSFX != null && onHideSFX.TryGetRandomClip(out var clip))
             {
