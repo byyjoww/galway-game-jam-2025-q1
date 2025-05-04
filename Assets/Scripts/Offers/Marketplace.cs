@@ -42,7 +42,7 @@ namespace Scamazon.Offers
             this.startingCurrency = startingCurrency;
             Reset();
 
-            creationTimer = new RandomEventTimer(CreateOffer, new RandomEventTimer.Config 
+            creationTimer = new RandomEventTimer(CreateOffer, new RandomEventTimer.Config
             {
                 Interval = STANDARD_OFFER_CREATION_DELAY,
                 Randomness = 0.5f,
@@ -50,8 +50,7 @@ namespace Scamazon.Offers
 
             delay = Timer.CreateScaledTimer(TimeSpan.FromSeconds(INITIAL_OFFER_CREATION_DELAY));
             delay.OnEnd.AddListener(delegate
-            {                
-                delay = null;
+            {
                 CreateOffer();
                 creationTimer.Start();
             });
@@ -85,8 +84,8 @@ namespace Scamazon.Offers
 
         public void Purchase(string offerID)
         {
-            Offer offer = ClearAndReturnOffer(offerID);            
-            purchases.Add(offer);            
+            Offer offer = ClearAndReturnOffer(offerID);
+            purchases.Add(offer);
 
             if (offer.Type == OfferType.Virus)
             {

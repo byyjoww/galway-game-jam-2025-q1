@@ -94,6 +94,7 @@ namespace Scamazon.App
             isRunning = false;
             timeLimit.Stop();
             marketplace.StopShowingOffers();
+            antivirus.Reset();
             OnGameEnded?.Invoke();
         }
 

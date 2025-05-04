@@ -23,8 +23,12 @@ namespace Scamazon.Virus
 
         protected override void OnEnded()
         {
-            cursor.SetOriginalCursor();
-            eventSystem.enabled = true;
+            if (eventSystem != null)
+            {
+                eventSystem.enabled = true;
+            }
+
+            cursor?.SetOriginalCursor();            
         }
     }
 }
