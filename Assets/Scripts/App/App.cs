@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 
 namespace Scamazon.App
@@ -22,9 +23,15 @@ namespace Scamazon.App
 
         [Header("Data")]
         [SerializeField] private Texture2D originalCursor = default;
-        [SerializeField] private Texture2D frozenCursor = default;
-        [SerializeField] private SoundlistSO buttonClick = default;
+        [SerializeField] private Texture2D frozenCursor = default;        
         [SerializeField] private Database<ProductSO> products = default;
+
+        [Header("Audio")]
+        [SerializeField] private TracklistSO bgm = default;
+        [SerializeField] private SoundlistSO buttonClick = default;
+        [SerializeField] private AudioSourceWrapper bgmSource = default;
+        [SerializeField] private AudioSourceWrapper sfxSource = default;
+        [SerializeField] private AudioMixer mixer = default;
 
         [Header("Views")]
         [SerializeField] private NotificationView notificationView = default;
@@ -44,6 +51,7 @@ namespace Scamazon.App
         private Marketplace marketplace = default;
         private Antivirus antivirus = default;
         private PlayerCursor cursor = default;
+        private AudioSystem audioSystem = default;
 
         // View controllers
         private NotificationViewController notificationViewController = default;
@@ -62,12 +70,13 @@ namespace Scamazon.App
 
         private void Awake()
         {
-            views.ForEach(x => x.SetAudioPlayer(null));
+            audioSystem = new AudioSystem(mixer, bgmSource, sfxSource, 0.5f, 0.5f, bgm, null);
+            views.ForEach(x => x.SetAudioPlayer(audioSystem.SFXPlayer));
             views.ForEach(x => x.SetButtonAudio(buttonClick));
         }
 
         private void Start()
-        {
+        {            
             timeLimit = new TimeLimit(timeConfig);
             offerFactory = new OfferFactory(products.Elements, offerConfig);
             cursor = new PlayerCursor(originalCursor, frozenCursor);
@@ -76,6 +85,7 @@ namespace Scamazon.App
 
             CreateViewControllers();
             cursor.SetOriginalCursor();
+            audioSystem.Init();
         }
 
         [ContextMenu("Reset")]
@@ -147,6 +157,7 @@ namespace Scamazon.App
             timeLimit?.Dispose();
             marketplace?.Dispose();
             antivirus?.Dispose();
+            audioSystem?.Dispose();
         }
 
         private void OnValidate()

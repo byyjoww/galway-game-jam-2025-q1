@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d12f5251122bc74b96b00addc5be96f, type: 3}
   m_Name: BuySoundlistSO
   m_EditorClassIdentifier: 
-  tracks: []
+  tracks:
+  - {fileID: 8300000, guid: e1f03f0ef36f55348aa21ecf25670108, type: 3}

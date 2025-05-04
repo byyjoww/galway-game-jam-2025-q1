@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d12f5251122bc74b96b00addc5be96f, type: 3}
-  m_Name: EndGameSoundlistSO
+  m_Script: {fileID: 11500000, guid: 007066e72a1915f4ab494f69b90b7a69, type: 3}
+  m_Name: BGMTracklistSO
   m_EditorClassIdentifier: 
-  tracks:
-  - {fileID: 8300000, guid: 82e8d7026ea62e74a9d86e4ae8d36401, type: 3}
+  tracks: []
