@@ -62,6 +62,10 @@ public class Popup : MonoBehaviour
         .setEaseInOutSine()
         .setLoopPingPong();
 
+        LeanTween.rotateZ(prodImage.gameObject, 15f, 0.5f)
+        .setEaseInOutSine()
+        .setLoopPingPong();
+
     }
 
     // Update is called once per frame
