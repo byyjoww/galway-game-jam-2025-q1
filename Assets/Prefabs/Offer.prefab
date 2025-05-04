@@ -2066,8 +2066,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3171901345368482705}
   m_HandleRect: {fileID: 4180560897480958271}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0.9999978
+  m_Size: 0.95010716
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3291,7 +3291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4065795883806221605, guid: a98af51bc105a79428aa54734945afad, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4065795883806221605, guid: a98af51bc105a79428aa54734945afad, type: 3}
       propertyPath: m_LocalPosition.x
