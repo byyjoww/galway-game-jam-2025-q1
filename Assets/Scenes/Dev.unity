@@ -1326,7 +1326,7 @@ MonoBehaviour:
   onHideSFX: {fileID: 0}
   offersRoot: {fileID: 2078435903}
   offerTemplate: {fileID: 5716035907891025179}
-  onBuy: {fileID: 0}
+  onBuy: {fileID: 11400000, guid: 6bb92a5acd459f0439a81e2dc9f262d3, type: 2}
 --- !u!1 &380697507
 GameObject:
   m_ObjectHideFlags: 0
