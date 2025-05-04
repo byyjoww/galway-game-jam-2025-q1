@@ -1,0 +1,198 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5658147206726509000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5257835376753958885}
+  - component: {fileID: 2176633178496370040}
+  m_Layer: 0
+  m_Name: App
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5257835376753958885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658147206726509000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2176633178496370040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658147206726509000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ab90d2816c91a4a82460b5eb8fd658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeConfig:
+    TimeLimitInSeconds: 180
+  startingCurrency: 1000
+  offerConfig:
+    headers:
+    - Limited Time Offer!
+    - Great Deal!
+    - Buy Now!
+    - 2 good to be tru!
+    - Ending Soon!
+    - Flash Deal!
+    realUrls:
+    - https://www.scamazon.com
+    - https://www.efake.com
+    - https://www.tino.com
+    fakeUrls:
+    - https://www.azamon.com
+    - https://www.notapyramidscheme.com
+    - https://www.freenfts.com
+    fakeHyperlinks:
+    - azamon.com
+    - alphaclub.web3
+    - makeeasymoney.com
+    legitMinRating: 100
+    legitMaxRating: 1000
+    legitMinStars: 6
+    legitMaxStars: 10
+    legitMinReviews: 2
+    legitMaxReviews: 3
+    legitReviewers:
+    - JennyT_shops
+    - emilyQ44
+    - Timmy
+    - RogerMike93
+    - miamiDealsGuy
+    - techgeek49
+    - sunnyvibes30
+    legitReviews:
+    - Works as intended, great purchase!
+    - Excellent product that matched description. Would buy again!
+    - Worked out of the box.
+    - Very happy with my purchase!
+    - Exactly like the image. Great seller.
+    - Great value for money!
+    - Took a couple of days longer to arrive but otherwise a great purchase
+    - Unreal value for money.
+    - Decent quality for the price. Not amazing, but it does the job
+    - exactly what I needed. shipping was fast and item arrived in good condition
+    - great value for money. not top-tier quality, but definitely worth the price
+    - Used it a few times now and everything seems solid. No major issues.
+    - Happy with the purchase. Might order another one soon.
+    - The color is slightly different from the photo, but not a big deal.
+    - 'I''d been meaning to buy one for a while and glad I finally did. '
+    - 'Works so well I purchased another! '
+    - the size isn't what I expected but that's my fault for not doing more research
+      - otherwise it's a great product
+    - Seller gave great support for an issue I had. Recommended!
+    - Very good product, recommended.
+    - Cannot recommend this enough to anyone. My thanks to the seller!
+    - A++
+    - 'Wasn''t aware of the international fee but otherwise a great purchase. '
+    - 'I''ve already ordered another 3! '
+    - Works great, thanks!
+    - 'unbelivable discount for the quality of the product. '
+    fakeMinRating: 0
+    fakeMaxRating: 20
+    fakeMinStars: 0
+    fakeMaxStars: 6
+    fakeMinReviews: 0
+    fakeMaxReviews: 2
+    fakeReviewers:
+    - user39427
+    - alphachad
+    - linkpaypalhere
+    - ezmoney2make
+    - johnDoe7192
+    - mysteryShopr
+    - cheapfindz4u
+    fakeReviews:
+    - Much good. yOU SHOULD BUY
+    - Love this
+    - omg
+    - i have 10 million pounds to put in your bank account
+    - this is amazing
+    - 336549i32iaxxxfhfhi737i
+    - Ok
+    - Your credit card has been compromised. Please send your Social Security number.
+    - Looking for hot, sexy girls in your area?
+    - I love you
+    - CEO, entrepreneur, Born in 1964
+    - here's my paypal
+    - Everything iz OK
+    - Love it love it love itt!
+    - will make you feel like a man
+    - yes
+    - this is gud deal
+    - I have a great deal for you Call me
+    - this is a totally legit review
+    - Please click the link to earn $$$
+    - The product is very product
+    - 'you should buy this. the best this. very good. '
+    - cool
+    - ummmmmmmmmmmmmmmmmmmmm
+    - beep boop
+  originalCursor: {fileID: 2800000, guid: 66826b1ea20eb9243bbd8b096e8e8558, type: 3}
+  frozenCursor: {fileID: 2800000, guid: 0a681454c3ebf6344b8c48d9f153a64c, type: 3}
+  products:
+    elements:
+    - {fileID: 11400000, guid: 7925e6ed372487044af2092e770d981c, type: 2}
+    - {fileID: 11400000, guid: 26cb0d39c2dd0d34689dc34af3af9ac8, type: 2}
+    - {fileID: 11400000, guid: 9dacb23117eb23545919342edfa7136d, type: 2}
+    - {fileID: 11400000, guid: 9c105414b0b48e540bb8c4eeb6e730dd, type: 2}
+    - {fileID: 11400000, guid: d3ec1bd1b8ab0da439d4808fb06238a5, type: 2}
+    - {fileID: 11400000, guid: 903a7a72b59b63841b0d98fd836a6cdc, type: 2}
+    - {fileID: 11400000, guid: 0763bac9605158e459d9ad8897c4ff42, type: 2}
+    - {fileID: 11400000, guid: a696dc199c4a86046855cfbf5fbf5314, type: 2}
+    - {fileID: 11400000, guid: b0382d14759f29e46b27e534d11ea3aa, type: 2}
+    - {fileID: 11400000, guid: b87f4dc7629a52b4b888d2e06f17fd43, type: 2}
+    - {fileID: 11400000, guid: 847a6bfe141ffb94c9e6055ce2428813, type: 2}
+    - {fileID: 11400000, guid: e336d13c14100d34dbbadac72eb4e50c, type: 2}
+    - {fileID: 11400000, guid: 8a17b5d698938a941b31c0e98326f3b5, type: 2}
+    - {fileID: 11400000, guid: 1b570945aa76d9d4c939da2277d9e8f5, type: 2}
+    - {fileID: 11400000, guid: 114894d634b01be42a77886d918bd0e4, type: 2}
+    - {fileID: 11400000, guid: 5b1eb059be946e04ea2e52ab3112edd0, type: 2}
+    - {fileID: 11400000, guid: 3b2645c300643bf48adbb11c794764f7, type: 2}
+    - {fileID: 11400000, guid: 65aaae2453cf1f443b6e7882730f9968, type: 2}
+    - {fileID: 11400000, guid: c4b040d292d44894aaf57eac6c0ff402, type: 2}
+    - {fileID: 11400000, guid: 0bd4d608b15930149991abf45c5e0b50, type: 2}
+  bgm: {fileID: 11400000, guid: 17b0f0c51049b0542b9d8143f966a73a, type: 2}
+  buttonClick: {fileID: 11400000, guid: 1772f897cf56d414791b29af66b4434d, type: 2}
+  bgmSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  mixer: {fileID: 24100000, guid: b3923e3755f98e040b08b89e43870810, type: 2}
+  notificationView: {fileID: 0}
+  timeLimitView: {fileID: 0}
+  offersView: {fileID: 0}
+  currencyView: {fileID: 0}
+  antivirusView: {fileID: 0}
+  desktopIconsView: {fileID: 0}
+  scoreView: {fileID: 0}
+  startGameView: {fileID: 0}
+  endGameView: {fileID: 0}
+  views:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
