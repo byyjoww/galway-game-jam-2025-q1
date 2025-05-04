@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 2588575145950013794}
   - component: {fileID: 6770149397433147174}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Taskbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

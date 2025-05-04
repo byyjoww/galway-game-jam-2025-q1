@@ -9,9 +9,11 @@ public class Popup : MonoBehaviour
     public TMP_Text bottomTitle;
     public Image bgImage;
     public Image prodImage;
+    public Image logo;
 
     int productCount = 20;
     public TMP_FontAsset[] fonts;
+    public Sprite[] logos;
 
     public static string[] genericTitles = { 
         "Great Deal!", 
@@ -31,7 +33,7 @@ public class Popup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        logo.sprite = logos[Random.Range(0, logos.Length)];
         title.text = genericTitles[Random.Range(0, genericTitles.Length)];
         //price.text = "$"+Random.Range(9, 50)+".99";
         bottomTitle.text = genericTitles[Random.Range(0, genericTitles.Length)];
