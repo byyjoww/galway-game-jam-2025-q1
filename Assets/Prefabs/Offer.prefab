@@ -2402,8 +2402,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9882188b026edbe4cabde498564ceecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onShowSFX: {fileID: 11400000, guid: 0ec579cd53bb54449b0e684b72bc4b9d, type: 2}
-  onHideSFX: {fileID: 11400000, guid: ba1ec6eb6ed5f7b47a68b445c111f9aa, type: 2}
+  onShowSFX: {fileID: 0}
+  onHideSFX: {fileID: 0}
   panel: {fileID: 8905880756082252154}
   productName: {fileID: 5178800336497843845}
   productDescription: {fileID: 6755621502196719805}
@@ -2430,7 +2430,7 @@ MonoBehaviour:
   emptyStar: {fileID: 6086516337318019896, guid: 9cc6db486ec40504e9064f0ae0f40a21, type: 3}
   halfStar: {fileID: 2398448174399942859, guid: 31b2d730b1eab3641bdd9d7553949f2c, type: 3}
   fullStar: {fileID: -1793548138301254656, guid: 07e80cc82717b8447981685946fe98c2, type: 3}
-  onBuy: {fileID: 11400000, guid: 6bb92a5acd459f0439a81e2dc9f262d3, type: 2}
+  onBuy: {fileID: 0}
 --- !u!1 &8059460068666225128
 GameObject:
   m_ObjectHideFlags: 0

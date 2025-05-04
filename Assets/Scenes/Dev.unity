@@ -748,10 +748,10 @@ RectTransform:
   - {fileID: 1884623438}
   m_Father: {fileID: 1513988269}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 342.8661, y: 130.335}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 101}
+  m_SizeDelta: {x: 342.8661, y: 130.33496}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &201532215
 MonoBehaviour:
@@ -4771,7 +4771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 28, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1884623439
@@ -4803,8 +4803,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4284374622
+  m_fontColor: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5140,9 +5140,9 @@ MonoBehaviour:
   startGameView: {fileID: 1199388812}
   endGameView: {fileID: 449352551}
   views:
-  - {fileID: 326103385}
   - {fileID: 146714036}
   - {fileID: 201532215}
+  - {fileID: 326103385}
   - {fileID: 364599303}
   - {fileID: 380697509}
   - {fileID: 910170847}
