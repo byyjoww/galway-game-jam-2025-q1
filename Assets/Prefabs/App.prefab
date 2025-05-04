@@ -51,12 +51,22 @@ MonoBehaviour:
     headers:
     - Limited Time Offer!
     - Great Deal!
+    - Buy Now!
+    - 2 good to be tru!
+    - Ending Soon!
+    - Flash Deal!
     realUrls:
-    - https://www.azamon.com
+    - https://www.scamazon.com
+    - https://www.efake.com
+    - https://www.tino.com
     fakeUrls:
     - https://www.azamon.com
+    - https://www.notapyramidscheme.com
+    - https://www.freenfts.com
     fakeHyperlinks:
     - azamon.com
+    - alphaclub.web3
+    - makeeasymoney.com
     legitMinRating: 100
     legitMaxRating: 1000
     legitMinStars: 6
@@ -64,15 +74,40 @@ MonoBehaviour:
     legitMinReviews: 2
     legitMaxReviews: 3
     legitReviewers:
+    - JennyT_shops
+    - emilyQ44
     - Timmy
     - RogerMike93
-    - Timmy
-    - RogerMike93
+    - miamiDealsGuy
+    - techgeek49
+    - sunnyvibes30
     legitReviews:
-    - I like it lots!
-    - I like it lots!
+    - Works as intended, great purchase!
+    - Excellent product that matched description. Would buy again!
+    - Worked out of the box.
+    - Very happy with my purchase!
+    - Exactly like the image. Great seller.
+    - Great value for money!
+    - Took a couple of days longer to arrive but otherwise a great purchase
+    - Unreal value for money.
+    - Decent quality for the price. Not amazing, but it does the job
+    - exactly what I needed. shipping was fast and item arrived in good condition
+    - great value for money. not top-tier quality, but definitely worth the price
+    - Used it a few times now and everything seems solid. No major issues.
+    - Happy with the purchase. Might order another one soon.
+    - The color is slightly different from the photo, but not a big deal.
+    - 'I''d been meaning to buy one for a while and glad I finally did. '
+    - 'Works so well I purchased another! '
+    - the size isn't what I expected but that's my fault for not doing more research
+      - otherwise it's a great product
+    - Seller gave great support for an issue I had. Recommended!
     - Very good product, recommended.
-    - Very good product, recommended.
+    - Cannot recommend this enough to anyone. My thanks to the seller!
+    - A++
+    - 'Wasn''t aware of the international fee but otherwise a great purchase. '
+    - 'I''ve already ordered another 3! '
+    - Works great, thanks!
+    - 'unbelivable discount for the quality of the product. '
     fakeMinRating: 0
     fakeMaxRating: 20
     fakeMinStars: 0
@@ -80,15 +115,39 @@ MonoBehaviour:
     fakeMinReviews: 0
     fakeMaxReviews: 2
     fakeReviewers:
-    - Timmy
-    - RogerMike93
-    - Timmy
-    - RogerMike93
+    - user39427
+    - alphachad
+    - linkpaypalhere
+    - ezmoney2make
+    - johnDoe7192
+    - mysteryShopr
+    - cheapfindz4u
     fakeReviews:
-    - I like it lots!
-    - I like it lots!
-    - Very good product, recommended.
-    - Very good product, recommended.
+    - Much good. yOU SHOULD BUY
+    - Love this
+    - omg
+    - i have 10 million pounds to put in your bank account
+    - this is amazing
+    - 336549i32iaxxxfhfhi737i
+    - Ok
+    - Your credit card has been compromised. Please send your Social Security number.
+    - Looking for hot, sexy girls in your area?
+    - I love you
+    - CEO, entrepreneur, Born in 1964
+    - here's my paypal
+    - Everything iz OK
+    - Love it love it love itt!
+    - will make you feel like a man
+    - yes
+    - this is gud deal
+    - I have a great deal for you Call me
+    - this is a totally legit review
+    - Please click the link to earn $$$
+    - The product is very product
+    - 'you should buy this. the best this. very good. '
+    - cool
+    - ummmmmmmmmmmmmmmmmmmmm
+    - beep boop
   originalCursor: {fileID: 2800000, guid: 66826b1ea20eb9243bbd8b096e8e8558, type: 3}
   frozenCursor: {fileID: 2800000, guid: 0a681454c3ebf6344b8c48d9f153a64c, type: 3}
   products:
