@@ -20,12 +20,16 @@ public class AnnoyingPopup : MonoBehaviour
     };
 
 
+    public Sprite[] bgSprites;
     public Image bgImage;
+
+    public Image shockImage;
     public TMP_Text title;
 
     // Start is called before the first frame update
     void Start()
     {
+        shockImage.sprite = bgSprites[Random.Range(0, 3)];
         title.text = genericTitles[Random.Range(0, genericTitles.Length)];
 
         title.color = randomTextColor();
@@ -40,15 +44,19 @@ public class AnnoyingPopup : MonoBehaviour
         .setLoopPingPong();
     }
 
-/*    void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GetComponent<RectTransform>().anchoredPosition = new Vector2(Random.Range(-450, 450), Random.Range(-250, 250));
 
-            Start();
+            shockImage.sprite = bgSprites[Random.Range(0, 3)];
+            title.text = genericTitles[Random.Range(0, genericTitles.Length)];
+
+            title.color = randomTextColor();
+            bgImage.color = randomBGColor();
         }
-    }*/
+    }
 
 
     Color randomBGColor()
@@ -59,5 +67,9 @@ public class AnnoyingPopup : MonoBehaviour
     Color randomTextColor()
     {
         return new Color(Random.Range(0, 120f) / 255f, Random.Range(0, 120f) / 255f, Random.Range(0, 120f) / 255f);
+    }
+
+    public void onClose() {
+        Destroy(gameObject);
     }
 }
