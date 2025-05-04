@@ -19,7 +19,7 @@ namespace Scamazon.UI
         {
             view.Setup(new CurrencyView.PresenterModel
             {
-                Value = $"${model.CurrencyAmount}",
+                Value = $"${model.CurrencyAmount.ToString("F2")}",
             });
         }
 

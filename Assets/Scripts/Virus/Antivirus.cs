@@ -29,6 +29,11 @@ namespace Scamazon.Virus
             OnVirusDetected?.Invoke(Current);
         }
 
+        public void Reset()
+        {
+            Current?.Dispose();
+        }
+
         private Virus Create()
         {
             return new FreezeVirus(cursor, 10f);

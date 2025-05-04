@@ -46,6 +46,11 @@ namespace Scamazon.Timers
             timer.Start();
         }
 
+        public void Reset()
+        {
+            timer.Reset();
+        }
+
         public void Increase(float seconds)
         {
             if (!timer.IsRunning) { return; }

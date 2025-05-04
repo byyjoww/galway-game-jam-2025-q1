@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Scamazon.App
 {
@@ -29,6 +30,8 @@ namespace Scamazon.App
         [SerializeField] private AntivirusView antivirusView = default;
         [SerializeField] private DesktopIconsView desktopIconsView = default;
         [SerializeField] private ScoreView scoreView = default;
+        [SerializeField] private StartGameView startGameView = default;
+        [SerializeField] private EndGameView endGameView = default;
 
         // Models
         private TimeLimit timeLimit = default;
@@ -45,6 +48,12 @@ namespace Scamazon.App
         private AntivirusViewController antivirusViewController = default;
         private DesktopIconsViewController desktopIconsViewController = default;
         private ScoreViewController scoreViewController = default;
+        private StartGameViewController startGameViewController = default;
+        private EndGameViewController endGameViewController = default;
+
+        private bool isRunning = false;
+
+        public event UnityAction OnGameEnded;
 
         private void Start()
         {
@@ -52,17 +61,46 @@ namespace Scamazon.App
             offerFactory = new OfferFactory(products.Elements);
             cursor = new PlayerCursor(originalCursor, frozenCursor);
             antivirus = new Antivirus(cursor);
-            marketplace = new Marketplace(offerFactory, antivirus, startingCurrency);            
+            marketplace = new Marketplace(offerFactory, antivirus, startingCurrency);
 
             CreateViewControllers();
-
             cursor.SetOriginalCursor();
+        }
+
+        [ContextMenu("Reset")]
+        public void ResetGame()
+        {
+            timeLimit.Reset();
+            marketplace.Reset();
+            antivirus.Reset();
+            startGameViewController.ShowView();
+        }
+
+        [ContextMenu("Start")]
+        public void StartGame()
+        {
+            if (isRunning) { return; }
+
+            isRunning = true;
             timeLimit.Start();
             marketplace.StartShowingOffers();
         }
 
+        [ContextMenu("End")]
+        public void EndGame()
+        {
+            if (!isRunning) { return; }
+
+            isRunning = false;
+            timeLimit.Stop();
+            marketplace.StopShowingOffers();
+            OnGameEnded?.Invoke();
+        }
+
         private void CreateViewControllers()
         {
+            startGameViewController = new StartGameViewController(startGameView, this);
+            endGameViewController = new EndGameViewController(endGameView, this, timeLimit, marketplace);
             notificationViewController = new NotificationViewController(notificationView);
             timeLimitViewController = new TimeLimitViewController(timeLimitView, timeLimit, notificationViewController);
             offersViewController = new OffersViewController(offersView, marketplace, notificationViewController);
@@ -71,6 +109,8 @@ namespace Scamazon.App
             desktopIconsViewController = new DesktopIconsViewController(desktopIconsView);
             scoreViewController = new ScoreViewController(scoreView, marketplace);
 
+            startGameViewController?.Init();
+            endGameViewController?.Init();
             notificationViewController?.Init();
             timeLimitViewController?.Init();
             offersViewController?.Init();
@@ -89,6 +129,8 @@ namespace Scamazon.App
             offersViewController?.Dispose();
             timeLimitViewController?.Dispose();
             notificationViewController?.Dispose();
+            startGameViewController?.Dispose();
+            endGameViewController?.Dispose();
 
             timeLimit?.Dispose();
             marketplace?.Dispose();

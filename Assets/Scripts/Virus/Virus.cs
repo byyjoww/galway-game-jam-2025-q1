@@ -9,31 +9,41 @@ namespace Scamazon.Virus
         private ITimer timer = default;
         private float duration = default;
 
+        public bool isExecuting = false;
+
         public event UnityAction OnEnd;
 
         public Virus(float duration)
         {
             this.duration = duration;
             timer = Timer.CreateScaledTimer(TimeSpan.FromSeconds(duration));
-            timer.OnEnd.AddListener(delegate
-            {
-                timer?.Dispose();
-                OnEnded();
-                OnEnd?.Invoke();
-            });
+            timer.OnEnd.AddListener(OnTimerEnd);
+        }
+
+        private void OnTimerEnd()
+        {            
+            OnEnded();
+            isExecuting = false;
+            OnEnd?.Invoke();
         }
 
         public void Execute()
         {
-            OnStarted();            
+            isExecuting = true;
+            OnStarted();
             timer.Start();
         }
 
         protected abstract void OnStarted();
         protected abstract void OnEnded();
 
-        public void Dispose()
+        public virtual void Dispose()
         {
+            if (timer.IsRunning)
+            {
+                OnTimerEnd();
+            }
+
             timer?.Dispose();
         }
     }

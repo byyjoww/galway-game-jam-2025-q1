@@ -26,6 +26,7 @@ namespace Scamazon.Offers
         private TimedOffer[] offers = default;
         private List<Offer> purchases = default;
         private List<Offer> skips = default;
+        private float startingCurrency = default;
 
         public int Score => purchases.Where(x => x.Type == OfferType.Legit).Sum(x => x.Product.Score);
         public float CurrencyAmount => currency;
@@ -38,7 +39,38 @@ namespace Scamazon.Offers
         {
             this.offerFactory = offerFactory;
             this.antivirus = antivirus;
-            this.currency = startingCurrency;
+            this.startingCurrency = startingCurrency;
+            Reset();
+
+            creationTimer = new RandomEventTimer(CreateOffer, new RandomEventTimer.Config 
+            {
+                Interval = STANDARD_OFFER_CREATION_DELAY,
+                Randomness = 0.5f,
+            });
+
+            delay = Timer.CreateScaledTimer(TimeSpan.FromSeconds(INITIAL_OFFER_CREATION_DELAY));
+            delay.OnEnd.AddListener(delegate
+            {                
+                delay = null;
+                CreateOffer();
+                creationTimer.Start();
+            });
+        }
+
+        public void StartShowingOffers()
+        {
+            delay.Restart();
+        }
+
+        public void StopShowingOffers()
+        {
+            delay?.Reset();
+            creationTimer?.Stop();
+        }
+
+        public void Reset()
+        {
+            currency = startingCurrency;
             purchases = new List<Offer>();
             skips = new List<Offer>();
             offers = new TimedOffer[]
@@ -48,25 +80,7 @@ namespace Scamazon.Offers
                 new TimedOffer{ Offer = new Offer{ ID = $"{2}", Type = OfferType.None } },
                 new TimedOffer{ Offer = new Offer{ ID = $"{3}", Type = OfferType.None } },
             };
-
-            creationTimer = new RandomEventTimer(CreateOffer, new RandomEventTimer.Config 
-            {
-                Interval = STANDARD_OFFER_CREATION_DELAY,
-                Randomness = 0.5f,
-            });
-        }
-
-        public void StartShowingOffers()
-        {
-            delay = Timer.CreateScaledTimer(TimeSpan.FromSeconds(INITIAL_OFFER_CREATION_DELAY));
-            delay.OnEnd.AddListener(delegate
-            {
-                delay?.Dispose();
-                delay = null;
-                CreateOffer();
-                creationTimer.Start();
-            });
-            delay.Start();
+            OnValueChanged?.Invoke();
         }
 
         public void Purchase(string offerID)
