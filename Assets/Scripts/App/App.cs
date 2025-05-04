@@ -6,12 +6,13 @@ using Scamazon.UI;
 using Scamazon.Virus;
 using SLS.Core;
 using SLS.Core.Extensions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Scamazon.App
 {
@@ -68,15 +69,12 @@ namespace Scamazon.App
 
         public event UnityAction OnGameEnded;
 
-        private void Awake()
+        private void Start()
         {
-            audioSystem = new AudioSystem(mixer, bgmSource, sfxSource, 0.5f, 0.5f, bgm, null);
+            audioSystem = new AudioSystem(mixer, bgmSource, sfxSource, 0.5f, 0.25f, bgm, null);
             views.ForEach(x => x.SetAudioPlayer(audioSystem.SFXPlayer));
             views.ForEach(x => x.SetButtonAudio(buttonClick));
-        }
 
-        private void Start()
-        {            
             timeLimit = new TimeLimit(timeConfig);
             offerFactory = new OfferFactory(products.Elements, offerConfig);
             cursor = new PlayerCursor(originalCursor, frozenCursor);
@@ -160,10 +158,13 @@ namespace Scamazon.App
             audioSystem?.Dispose();
         }
 
+#if UNITY_EDITOR
         private void OnValidate()
         {
             products?.Refresh();
-            views = FindObjectsOfType<View>();
+            views = FindObjectsOfType<View>(true);
+            EditorUtility.SetDirty(this);
         }
+#endif
     }
 }

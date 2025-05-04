@@ -27,7 +27,6 @@ namespace Scamazon.UI
 
                 OnQuit = delegate
                 {
-                    HideView();
                     Application.Quit();
                 },
             });

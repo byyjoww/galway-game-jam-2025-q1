@@ -71,6 +71,8 @@ namespace Scamazon.UI
         {
             OfferView rv = Instantiate(offerTemplate, offersRoot);
             rv.Setup(pm);
+            rv.SetAudioPlayer(audioPlayer);
+            rv.SetButtonAudio(buttonSfx);
             rv.gameObject.SetActive(true);
             rv.transform.SetSiblingIndex(pm.OfferIndex);
             instantiated.Add(pm.OfferID, rv);

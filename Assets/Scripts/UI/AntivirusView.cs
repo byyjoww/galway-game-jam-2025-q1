@@ -13,6 +13,7 @@ namespace Scamazon.UI
         [SerializeField] private Image quarantine = default;
         [SerializeField] private Transform originTransform = default;
         [SerializeField] private Transform destinationTransform = default;
+        [SerializeField] private GameObject freezePanel = default;
 
         [Header("Audio")]
         [SerializeField] private SoundlistSO onVirusDetected = default;
@@ -22,6 +23,8 @@ namespace Scamazon.UI
 
         private Vector3 origin => originTransform.position;
         private Vector3 destination => destinationTransform.position;
+
+        public GameObject FreezePanel => freezePanel;
         
         private void Awake()
         {

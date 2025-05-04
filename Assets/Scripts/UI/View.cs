@@ -22,7 +22,7 @@ namespace Scamazon.UI
 
         public void SetAudioPlayer(IAudioPlayer audioPlayer)
         {
-            this.audioPlayer = audioPlayer;
+            this.audioPlayer = audioPlayer;            
         }
 
         public void SetButtonAudio(ISoundlist sfx)
