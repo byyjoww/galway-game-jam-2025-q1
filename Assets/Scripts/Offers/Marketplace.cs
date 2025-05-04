@@ -27,9 +27,11 @@ namespace Scamazon.Offers
         private List<Offer> purchases = default;
         private List<Offer> skips = default;
 
+        public int Score => purchases.Where(x => x.Type == OfferType.Legit).Sum(x => x.Product.Score);
         public float CurrencyAmount => currency;
         public IReadOnlyList<Offer> Offers => offers.Select(x => x.Offer).ToList();
 
+        public UnityAction<Offer> OnPurchase;
         public UnityAction OnValueChanged;
 
         public Marketplace(OfferFactory offerFactory, Antivirus antivirus, float startingCurrency)
@@ -81,6 +83,7 @@ namespace Scamazon.Offers
                 currency -= offer.Price;
             }
 
+            OnPurchase?.Invoke(offer);
             OnValueChanged?.Invoke();
         }
 

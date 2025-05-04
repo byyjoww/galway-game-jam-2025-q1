@@ -30,22 +30,25 @@ namespace Scamazon.UI
             if (tweenId.HasValue)
             {
                 LeanTween.cancel(tweenId.Value);
+                quarantine.transform.position = origin;
+                detected.transform.position = origin;
             }
 
             detected.transform.position = origin;
             var tween = LeanTween
                 .moveY(detected.gameObject, destination.y, timeToMove)
                 .setOnComplete(() =>
-                {
-                    detected.transform.position = destination;
+                {                    
                     LeanTween.cancel(tweenId.Value);
+                    detected.transform.position = destination;
+
                     var tween = LeanTween
                         .moveY(detected.gameObject, origin.y, timeToMove)
                         .setDelay(timeVisible)
                         .setOnComplete(() =>
                         {
-                            detected.transform.position = origin;
                             LeanTween.cancel(tweenId.Value);
+                            detected.transform.position = origin;                            
                         });
 
                     tweenId = tween.id;
@@ -60,6 +63,8 @@ namespace Scamazon.UI
             if (tweenId.HasValue)
             {
                 LeanTween.cancel(tweenId.Value);
+                quarantine.transform.position = origin;
+                detected.transform.position = origin;
             }
 
             quarantine.transform.position = origin;
@@ -67,15 +72,16 @@ namespace Scamazon.UI
                 .moveY(quarantine.gameObject, destination.y, timeToMove)
                 .setOnComplete(() =>
                 {
-                    quarantine.transform.position = destination;
                     LeanTween.cancel(tweenId.Value);
+                    quarantine.transform.position = destination;
+                    
                     var tween = LeanTween
                         .moveY(quarantine.gameObject, origin.y, timeToMove)
                         .setDelay(timeVisible)
                         .setOnComplete(() =>
                         {
-                            quarantine.transform.position = origin;
                             LeanTween.cancel(tweenId.Value);
+                            quarantine.transform.position = origin;                            
                         });
 
                     tweenId = tween.id;

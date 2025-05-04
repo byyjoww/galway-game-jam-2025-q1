@@ -28,6 +28,7 @@ namespace Scamazon.App
         [SerializeField] private CurrencyView currencyView = default;
         [SerializeField] private AntivirusView antivirusView = default;
         [SerializeField] private DesktopIconsView desktopIconsView = default;
+        [SerializeField] private ScoreView scoreView = default;
 
         // Models
         private TimeLimit timeLimit = default;
@@ -43,6 +44,7 @@ namespace Scamazon.App
         private CurrencyViewController currencyViewController = default;
         private AntivirusViewController antivirusViewController = default;
         private DesktopIconsViewController desktopIconsViewController = default;
+        private ScoreViewController scoreViewController = default;
 
         private void Start()
         {
@@ -63,10 +65,11 @@ namespace Scamazon.App
         {
             notificationViewController = new NotificationViewController(notificationView);
             timeLimitViewController = new TimeLimitViewController(timeLimitView, timeLimit, notificationViewController);
-            offersViewController = new OffersViewController(offersView, marketplace);
+            offersViewController = new OffersViewController(offersView, marketplace, notificationViewController);
             currencyViewController = new CurrencyViewController(currencyView, marketplace);
             antivirusViewController = new AntivirusViewController(antivirusView, antivirus);
             desktopIconsViewController = new DesktopIconsViewController(desktopIconsView);
+            scoreViewController = new ScoreViewController(scoreView, marketplace);
 
             notificationViewController?.Init();
             timeLimitViewController?.Init();
@@ -74,10 +77,12 @@ namespace Scamazon.App
             currencyViewController?.Init();
             antivirusViewController?.Init();
             desktopIconsViewController?.Init();
+            scoreViewController?.Init();
         }
 
         private void OnDestroy()
         {
+            scoreViewController?.Dispose();
             desktopIconsViewController?.Dispose();
             antivirusViewController?.Dispose();
             currencyViewController?.Dispose();

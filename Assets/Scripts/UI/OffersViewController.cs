@@ -6,13 +6,16 @@ namespace Scamazon.UI
 {
     public class OffersViewController : ViewController<OffersView, Marketplace>
     {
-        public OffersViewController(OffersView view, Marketplace model) : base(view, model)
-        {
+        private NotificationViewController notificationViewController = default;
 
+        public OffersViewController(OffersView view, Marketplace model, NotificationViewController notificationViewController) : base(view, model)
+        {
+            this.notificationViewController = notificationViewController;
         }
 
         public override void Init()
         {
+            model.OnPurchase += OnPurchase;
             model.OnValueChanged += ShowOffers;
             ShowOffers();
         }
@@ -67,6 +70,25 @@ namespace Scamazon.UI
            };
         }
 
+        public void OnPurchase(Offer offer)
+        {
+            if (offer.Type == OfferType.Scam)
+            {
+                notificationViewController.Enqueue(new NotificationView.PresenterModel
+                {
+                    NotificationText = "You were scammed!!!",
+                    IsPopupText = false,
+                    CreateScreenNotificationTweenFunc = (go) =>
+                    {
+                        return LeanTween.delayedCall(2f, () =>
+                        {
+                            go.SetActive(false);
+                        });
+                    },
+                });
+            }
+        }
+
         private ReviewView.PresenterModel CreateReview(Review review)
         {
             return new ReviewView.PresenterModel
@@ -78,6 +100,7 @@ namespace Scamazon.UI
 
         public override void Dispose()
         {
+            model.OnPurchase -= OnPurchase;
             model.OnValueChanged -= ShowOffers;
         }
     }

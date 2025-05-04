@@ -39,8 +39,6 @@ namespace Scamazon.Offers
 
         private OfferType GenerateOfferType()
         {
-            return OfferType.Virus;
-
             if (RNG.RollSuccess(0.35f))
             {
                 if (RNG.RollSuccess(0.5f))

@@ -77,11 +77,11 @@ namespace Scamazon.UI
             {
                 NotificationText = notificationKey,
                 IsPopupText = false,
-                CreateScreenNotificationTweenFunc = (gameObj) =>
+                CreateScreenNotificationTweenFunc = (go) =>
                 {
                     return LeanTween.delayedCall(2f, () =>
                     {
-                        gameObj.SetActive(false);
+                        go.SetActive(false);
                     });
                 },
             });
