@@ -128,9 +128,9 @@ namespace Scamazon.Offers
 
         private OfferType GenerateOfferType()
         {
-            if (RNG.RollSuccess(0.4f))
+            if (RNG.RollSuccess(0.5f))
             {
-                if (RNG.RollSuccess(0.5f))
+                if (RNG.RollSuccess(0.60f))
                 {
                     return OfferType.Scam;
                 }
@@ -156,16 +156,12 @@ namespace Scamazon.Offers
                 possible = new List<FakeIndicator>()
                 {
                     FakeIndicator.URL,
-                    FakeIndicator.Reviews,
-                    FakeIndicator.Delivery,
-                    FakeIndicator.Price,
                 };
             }
             else
             {
                 possible = new List<FakeIndicator>()
                 {
-                    FakeIndicator.URL,
                     FakeIndicator.Reviews,
                     FakeIndicator.Delivery,
                     FakeIndicator.Price,
