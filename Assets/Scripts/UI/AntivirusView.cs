@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Scamazon.Audio;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +14,15 @@ namespace Scamazon.UI
         [SerializeField] private Transform originTransform = default;
         [SerializeField] private Transform destinationTransform = default;
 
+        [Header("Audio")]
+        [SerializeField] private SoundlistSO onVirusDetected = default;
+        [SerializeField] private SoundlistSO onVirusQuarantined = default;
+
         private int? tweenId = default;
 
         private Vector3 origin => originTransform.position;
         private Vector3 destination => destinationTransform.position;
-
+        
         private void Awake()
         {
             quarantine.transform.position = origin;
@@ -34,6 +39,7 @@ namespace Scamazon.UI
                 detected.transform.position = origin;
             }
 
+            PlayOneShotAudio(onVirusDetected);
             detected.transform.position = origin;
             var tween = LeanTween
                 .moveY(detected.gameObject, destination.y, timeToMove)
@@ -67,6 +73,7 @@ namespace Scamazon.UI
                 detected.transform.position = origin;
             }
 
+            PlayOneShotAudio(onVirusQuarantined);
             quarantine.transform.position = origin;
             var tween = LeanTween
                 .moveY(quarantine.gameObject, destination.y, timeToMove)

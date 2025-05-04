@@ -1,9 +1,11 @@
+using Scamazon.Audio;
 using Scamazon.Cursor;
 using Scamazon.Offers;
 using Scamazon.Timers;
 using Scamazon.UI;
 using Scamazon.Virus;
 using SLS.Core;
+using SLS.Core.Extensions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +23,7 @@ namespace Scamazon.App
         [Header("Data")]
         [SerializeField] private Texture2D originalCursor = default;
         [SerializeField] private Texture2D frozenCursor = default;
+        [SerializeField] private SoundlistSO buttonClick = default;
         [SerializeField] private Database<ProductSO> products = default;
 
         [Header("Views")]
@@ -33,6 +36,7 @@ namespace Scamazon.App
         [SerializeField] private ScoreView scoreView = default;
         [SerializeField] private StartGameView startGameView = default;
         [SerializeField] private EndGameView endGameView = default;
+        [SerializeField] private View[] views = default;
 
         // Models
         private TimeLimit timeLimit = default;
@@ -55,6 +59,12 @@ namespace Scamazon.App
         private bool isRunning = false;
 
         public event UnityAction OnGameEnded;
+
+        private void Awake()
+        {
+            views.ForEach(x => x.SetAudioPlayer(null));
+            views.ForEach(x => x.SetButtonAudio(buttonClick));
+        }
 
         private void Start()
         {
@@ -142,6 +152,7 @@ namespace Scamazon.App
         private void OnValidate()
         {
             products?.Refresh();
+            views = FindObjectsOfType<View>();
         }
     }
 }
