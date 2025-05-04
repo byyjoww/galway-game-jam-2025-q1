@@ -81,7 +81,7 @@ public class Popup : MonoBehaviour
     }*/
 
     Color randomBGColor() {
-        return new Color(Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f, Random.Range(100, 255f) / 255f);
+        return new Color(Random.Range(150, 255f) / 255f, Random.Range(150, 255f) / 255f, Random.Range(150, 255f) / 255f);
     }
 
     Color randomTextColor()
