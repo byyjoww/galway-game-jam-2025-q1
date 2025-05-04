@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f766bcddf74952429afd9181ccf34c2, type: 3}
-  m_Name: ScrewdriverProductSO
+  m_Name: BookshelfProductSO
   m_EditorClassIdentifier: 
-  productName: Screwdriver
-  description: Makes screws feel unwelcome.
-  icon: {fileID: 21300000, guid: 5b46ad566e3c3574a8f385e3f6d6605c, type: 3}
-  score: 50
+  productName: Bookshelf
+  description: "Where books go to pretend they\u2019ve been read."
+  icon: {fileID: 21300000, guid: 0274309c1f8d74140826996bcd7edb85, type: 3}
+  score: 120

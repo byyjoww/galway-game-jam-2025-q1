@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f766bcddf74952429afd9181ccf34c2, type: 3}
-  m_Name: ScrewdriverProductSO
+  m_Name: LawnmowerProductSO
   m_EditorClassIdentifier: 
-  productName: Screwdriver
-  description: Makes screws feel unwelcome.
-  icon: {fileID: 21300000, guid: 5b46ad566e3c3574a8f385e3f6d6605c, type: 3}
-  score: 50
+  productName: Lawnmower
+  description: A grass blender.
+  icon: {fileID: 21300000, guid: b767f5196f849a44a9b9546d2ee0b630, type: 3}
+  score: 160

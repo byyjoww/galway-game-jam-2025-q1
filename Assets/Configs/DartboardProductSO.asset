@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f766bcddf74952429afd9181ccf34c2, type: 3}
-  m_Name: ScrewdriverProductSO
+  m_Name: DartboardProductSO
   m_EditorClassIdentifier: 
-  productName: Screwdriver
-  description: Makes screws feel unwelcome.
-  icon: {fileID: 21300000, guid: 5b46ad566e3c3574a8f385e3f6d6605c, type: 3}
-  score: 50
+  productName: Dartboard
+  description: Target for darts and questionable life choices.
+  icon: {fileID: 21300000, guid: cdabf5eb1d8c7004bb2a113b29098f9a, type: 3}
+  score: 110
